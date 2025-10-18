@@ -132,19 +132,6 @@ export default function TourGuideSite() {
   const [loading, setLoading] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  // Preload background images
-  useEffect(() => {
-    const imagesToPreload = [
-      '/assets/trees.jpg',
-      '/assets/forest.jpg',
-      '/assets/river.jpg'
-    ];
-
-    imagesToPreload.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
