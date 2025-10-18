@@ -1,9 +1,6 @@
 # Dependencies
 node_modules/
 
-# Assets
-assets/
-
 # Build output
 dist/
 dist-ssr/
