@@ -378,54 +378,68 @@ export default function TourGuideSite() {
 
   // About Page
   const AboutPage = () => (
-    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-bold mb-8 text-emerald-700">About Tyson</h1>
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: 'url(/assets/forest.jpg)',
+          filter: 'brightness(0.4)',
+        }}
+      />
 
-        <div className="space-y-6 text-stone-200 leading-relaxed">
-          <p className="text-lg">
-            Tyson Stillman was born and raised on the Yellowstone River in Livingston, Montana. Throughout his childhood, he discovered a love for the rich history and flora and fauna surrounding him!
-          </p>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b via-stone-900/50 to-emerald-950/40" />
 
-          <p className="text-lg">
-            Those formative hobbies transpired into an education at MSU. Tyson acquired a degree in sustainable agriculture and Native American studies. His thirst for knowledge led him to further his studies, learning the ins and outs of the nursery business and arboreal work, a fascination with mycology leading to the building of a mushroom facility on the farm, and taking his agricultural degree to the next level by growing a large and bountiful garden to feed his community.
-          </p>
+      <div className="relative z-10 pt-40 px-4 pb-12">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl font-bold mb-8 text-emerald-700 drop-shadow-lg">About Tyson</h1>
 
-          <p className="text-lg">
-             Tyson runs{' '}
-             <a
-               href="https://www.shieldsriverfarm.com/"
-               target="_blank"
-               rel="noopener noreferrer"
-               className="text-emerald-700 hover:text-emerald-600 underline decoration-emerald-700/50 hover:decoration-emerald-600 transition-colors"
-             >
-               Shield River Farm and Nursery
-             </a>
-             {' '}with his amazing wife, Jessica. Together they have carved out a little slice of paradise ready to share with all you adventurers out there!
-          </p>
-        </div>
+          <div className="space-y-6 text-stone-200 leading-relaxed">
+            <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30">
+              Tyson Stillman was born and raised on the Yellowstone River in Livingston, Montana. Throughout his childhood, he discovered a love for the rich history and flora and fauna surrounding him!
+            </p>
 
-        {/* Email Footer */}
-        <div className="mt-16 border-t border-emerald-950/30 pt-8">
-          <p className="text-stone-400 text-center mb-4">Questions? Get in touch:</p>
-          <a
-            href="mailto:tysontours.contact@gmail.com"
-            className="flex items-center justify-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
-          >
-            <Mail size={20} />
-            tysontours.contact@gmail.com
-          </a>
-          <p className="text-stone-500 text-xs mt-4 text-center">
-            Made by{' '}
+            <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30">
+              Those formative hobbies transpired into an education at MSU. Tyson acquired a degree in sustainable agriculture and Native American studies. His thirst for knowledge led him to further his studies, learning the ins and outs of the nursery business and arboreal work, a fascination with mycology leading to the building of a mushroom facility on the farm, and taking his agricultural degree to the next level by growing a large and bountiful garden to feed his community.
+            </p>
+
+            <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30">
+               Tyson runs{' '}
+               <a
+                 href="https://www.shieldsriverfarm.com/"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="text-emerald-700 hover:text-emerald-600 underline decoration-emerald-700/50 hover:decoration-emerald-600 transition-colors"
+               >
+                 Shield River Farm and Nursery
+               </a>
+               {' '}with his amazing wife, Jessica. Together they have carved out a little slice of paradise ready to share with all you adventurers out there!
+            </p>
+          </div>
+
+          {/* Email Footer */}
+          <div className="mt-16 border-t border-emerald-950/30 pt-8 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+            <p className="text-stone-400 text-center mb-4">Questions? Get in touch:</p>
             <a
-              href="https://github.com/erinwolff"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-stone-400 hover:text-emerald-700 transition-colors"
+              href="mailto:tysontours.contact@gmail.com"
+              className="flex items-center justify-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
             >
-              Erin Wolff
+              <Mail size={20} />
+              tysontours.contact@gmail.com
             </a>
-          </p>
+            <p className="text-stone-500 text-xs mt-4 text-center">
+              Made by{' '}
+              <a
+                href="https://github.com/erinwolff"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-stone-400 hover:text-emerald-700 transition-colors"
+              >
+                Erin Wolff
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -457,15 +471,28 @@ export default function TourGuideSite() {
     };
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-5xl font-bold mb-6 text-emerald-700">Our Packages</h1>
-          <p className="text-stone-400 mb-4 text-lg">
-            These are some of our packages which are subject to change based on the needs/wants of the group.
-          </p>
-          <p className="text-stone-400 mb-12 text-base">
-            All parties are required to provide Tyson with beers and marijuana; longer trips will require at least one meal and copious snacks. All experiences are non-negotiably dog friendly—must love dogs to join. A liability waiver must be signed to participate.
-          </p>
+      <div className="min-h-screen relative overflow-hidden">
+        {/* Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(/assets/river.jpg)',
+            filter: 'brightness(0.4)',
+          }}
+        />
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/0 via-stone-900/30 to-emerald-950/70" />
+
+        <div className="relative z-10 pt-40 px-4 pb-12">
+          <div className="max-w-5xl mx-auto">
+            <h1 className="text-5xl font-bold mb-6 text-emerald-700 drop-shadow-lg">Our Packages</h1>
+            <p className="text-stone-200 mb-4 text-lg bg-stone-900/60 backdrop-blur-sm p-4 rounded-lg border border-emerald-950/30 inline-block">
+              These are some of our packages which are subject to change based on the needs/wants of the group.
+            </p>
+            <p className="text-stone-200 mb-12 text-base bg-stone-900/60 backdrop-blur-sm p-4 rounded-lg border border-emerald-950/30">
+              All parties are required to provide Tyson with beers and marijuana; longer trips will require at least one meal and copious snacks. All experiences are non-negotiably dog friendly—must love dogs to join. A liability waiver must be signed to participate.
+            </p>
 
           <div className="space-y-8">
             {packages.map((pkg, idx) => (
@@ -651,8 +678,8 @@ export default function TourGuideSite() {
           )}
 
           {/* Email Footer */}
-          <div className="mt-16 border-t border-emerald-950/30 pt-8">
-            <p className="text-stone-400 text-center mb-4">Ready to explore? Contact us:</p>
+          <div className="mt-16 border-t border-emerald-950/30 pt-8 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+            <p className="text-stone-200 text-center mb-4">Ready to explore? Contact us:</p>
             <a
               href="mailto:tysontours.contact@gmail.com"
               className="flex items-center justify-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
@@ -671,6 +698,7 @@ export default function TourGuideSite() {
                 Erin Wolff
               </a>
             </p>
+          </div>
           </div>
         </div>
       </div>
@@ -703,10 +731,24 @@ export default function TourGuideSite() {
     };
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 text-emerald-700">Gallery</h1>
-          <p className="text-stone-400 mb-8 md:mb-12 text-base md:text-lg">Moments from the trail with Tyson</p>
+      <div className="min-h-screen relative overflow-hidden">
+        {/* Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(/assets/trees.jpg)',
+            filter: 'brightness(0.4)',
+            willChange: 'transform',
+          }}
+        />
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/50 to-emerald-950/70" />
+
+        <div className="relative z-10 pt-40 px-4 pb-12">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold mb-3 text-emerald-700 drop-shadow-lg">Gallery</h1>
+            <p className="text-stone-200 mb-8 md:mb-12 text-base md:text-lg bg-stone-900/60 backdrop-blur-sm p-4 rounded-lg border border-emerald-950/30 inline-block">Moments from the trail with Tyson</p>
 
           {/* Masonry Grid */}
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
@@ -810,8 +852,8 @@ export default function TourGuideSite() {
           )}
 
           {/* Email Footer */}
-          <div className="mt-16 border-t border-emerald-950/30 pt-8">
-            <p className="text-stone-400 text-center mb-4">Inspired? Let's plan your adventure:</p>
+          <div className="mt-16 border-t border-emerald-950/30 pt-8 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+            <p className="text-stone-200 text-center mb-4">Inspired? Let's plan your adventure:</p>
             <a
               href="mailto:tysontours.contact@gmail.com"
               className="flex items-center justify-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
@@ -830,6 +872,7 @@ export default function TourGuideSite() {
                 Erin Wolff
               </a>
             </p>
+          </div>
           </div>
         </div>
       </div>
