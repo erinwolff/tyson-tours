@@ -307,23 +307,28 @@ export default function TourGuideSite() {
   const AboutPage = () => (
     <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-bold mb-8 text-yellow-500">About Us</h1>
+        <h1 className="text-5xl font-bold mb-8 text-yellow-500">About Tyson</h1>
 
         <div className="space-y-6 text-gray-300 leading-relaxed">
           <p className="text-lg">
-            Born from a lifelong passion for wilderness and a deep respect for nature's power, we've dedicated ourselves to sharing the transformative experience of guided exploration. Every trail tells a story. Every forest holds secrets. Every summit rewards those brave enough to seek it.
+            Tyson Stillman was born and raised on the Yellowstone River in Livingston, Montana. Throughout his childhood, he discovered a love for the rich history and flora and fauna surrounding him!
           </p>
 
           <p className="text-lg">
-            Our approach blends adventure with education. We don't just take you on hikes—we teach you to read the land, understand ecosystems, and develop a genuine connection with the natural world. Whether it's identifying rare mushroom species or decoding bird calls, knowledge deepens appreciation.
+            Those formative hobbies transpired into an education at MSU. Tyson acquired a degree in sustainable agriculture and Native American studies. His thirst for knowledge led him to further his studies, learning the ins and outs of the nursery business and arboreal work, a fascination with mycology leading to the building of a mushroom facility on the farm, and taking his agricultural degree to the next level by growing a large and bountiful garden to feed his community.
           </p>
 
           <p className="text-lg">
-            We operate with a metalhead's ethos: raw, authentic, unapologetic. No corporate polish, no manufactured experiences. Just real wilderness, expert guidance, and genuine passion for helping you discover why these trails matter.
-          </p>
-
-          <p className="text-lg">
-            Safety, sustainability, and respect for nature guide everything we do. We're committed to leaving no trace and ensuring these pristine landscapes remain untamed for generations to come.
+             Tyson runs{' '}
+             <a
+               href="https://www.shieldsriverfarm.com/"
+               target="_blank"
+               rel="noopener noreferrer"
+               className="text-yellow-500 hover:text-yellow-400 underline decoration-yellow-500/50 hover:decoration-yellow-400 transition-colors"
+             >
+               Shield River Farm and Nursery
+             </a>
+             {' '}with his amazing wife, Jessica. Together they have carved out a little slice of paradise ready to share with all you adventurers out there!
           </p>
         </div>
 
