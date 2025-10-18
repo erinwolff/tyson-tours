@@ -231,7 +231,7 @@ export default function TourGuideSite() {
               transform: `translateY(${scrollY * 0.3}px)`,
             }}
           >
-            Expert guided tours through pristine wilderness
+            Real adventures with real people
           </p>
           <div
             className="animate-bounce"
@@ -246,9 +246,9 @@ export default function TourGuideSite() {
         {/* Description */}
         <div className="max-w-3xl mx-auto mb-20">
           <p className="text-lg text-gray-300 leading-relaxed mb-6">
-            Here at Tyson Tours we aim to provide you with a silly and educational experience! Our award winning tours can be shaped and molded into the adventure of a lifetime. 
+            Here at Tyson Tours, we aim to provide you with a silly and educational experience! Our award-winning tours can be shaped and molded into the adventure of a lifetime.
 
-            Perfect for birthday parties, bar mitzvah, corporate events, sorority/fraternity rush week, wedding receptions, night out with the homies, or any other event!
+            Perfect for birthday parties, bar mitzvahs, corporate events, sorority/fraternity rush week, wedding receptions, nights out with the homies, or any other event!
           </p>
           <p className="text-lg text-gray-400">
             Tyson and Jessica Stillman know no stranger, so be prepared for new friends for life!
