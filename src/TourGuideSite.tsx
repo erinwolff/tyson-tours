@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Menu, X, ChevronDown, Clock, Users, Mail } from 'lucide-react';
+import { Menu, X, ChevronDown, Clock, Mail } from 'lucide-react';
 
 export default function TourGuideSite() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -421,55 +421,77 @@ export default function TourGuideSite() {
             All parties are required to provide Tyson with beers and marijuana; longer trips will require at least one meal and copious snacks. All experiences are non-negotiably dog friendly—must love dogs to join. A liability waiver must be signed to participate.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-8">
             {packages.map((pkg, idx) => (
               <div
                 key={idx}
-                className="bg-gradient-to-br from-stone-800 to-stone-900 border border-yellow-900/30 rounded-lg p-6 hover:border-yellow-900/60 transition-colors group flex flex-col"
+                className="relative bg-gradient-to-br from-stone-800/50 via-stone-900/80 to-black/90 border-2 border-yellow-900/40 rounded-xl overflow-hidden hover:border-yellow-500/60 transition-all duration-300 group"
               >
-                <div className="flex justify-between items-start mb-3">
-                  <h2 className="text-2xl font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors">
-                    {pkg.title}
-                  </h2>
-                  <span className="text-3xl font-bold text-green-400">{pkg.price}</span>
-                </div>
+                {/* Angled accent stripe */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-yellow-600/20 to-green-600/20 transform rotate-45 translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-500" />
 
-                <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-400">
-                  <div className="flex items-center gap-2">
-                    <Clock size={16} className="text-yellow-600" />
-                    {pkg.duration}
+                <div className="relative p-8">
+                  {/* Header Section */}
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+                    <div className="flex-1">
+                      <div className="inline-block bg-yellow-900/30 border border-yellow-600/50 px-3 py-1 rounded-full mb-3">
+                        <span className="text-yellow-400 text-xs font-semibold uppercase tracking-wider">{pkg.age}</span>
+                      </div>
+                      <h2 className="text-4xl md:text-5xl font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors mb-2">
+                        {pkg.title}
+                      </h2>
+                      <div className="flex items-center gap-4 text-sm text-gray-400">
+                        <div className="flex items-center gap-1.5">
+                          <Clock size={18} className="text-yellow-600" />
+                          <span>{pkg.duration}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col items-start md:items-end">
+                      <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 border-2 border-green-500/50 rounded-lg px-6 py-4 shadow-lg shadow-green-900/30">
+                        <div className="text-xs text-green-300 uppercase tracking-wide mb-1">Price</div>
+                        <div className="text-4xl font-bold text-green-400">{pkg.price}</div>
+                      </div>
+                      {pkg.upgrade && (
+                        <p className="text-yellow-400 text-xs mt-3 italic max-w-[180px] text-right">
+                          ⭐ {pkg.upgrade}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Users size={16} className="text-yellow-600" />
-                    {pkg.age}
-                  </div>
-                </div>
 
-                {pkg.upgrade && (
-                  <p className="text-yellow-400 text-sm mb-3 italic">
-                    {pkg.upgrade}
+                  {/* Description */}
+                  <p className="text-gray-300 text-lg leading-relaxed mb-6 border-l-4 border-yellow-900/50 pl-4">
+                    {pkg.description}
                   </p>
-                )}
 
-                <p className="text-gray-300 leading-relaxed mb-4">{pkg.description}</p>
-
-                <div className="mt-auto space-y-2">
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {pkg.requirements}
-                  </p>
-                  {pkg.qualifier && (
-                    <p className="text-yellow-400 text-sm leading-relaxed">
-                      {pkg.qualifier}
+                  {/* Requirements Section */}
+                  <div className="bg-stone-900/60 border border-yellow-900/30 rounded-lg p-5 mb-6">
+                    <h3 className="text-yellow-500 font-semibold mb-2 flex items-center gap-2">
+                      <span className="text-xl">🍺</span> What to Bring:
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed mb-3">
+                      {pkg.requirements}
                     </p>
-                  )}
-                </div>
+                    {pkg.qualifier && (
+                      <div className="bg-yellow-900/20 border-l-4 border-yellow-500 p-3 rounded">
+                        <p className="text-yellow-400 text-sm font-medium flex items-start gap-2">
+                          <span className="text-lg">⚡</span>
+                          <span>{pkg.qualifier}</span>
+                        </p>
+                      </div>
+                    )}
+                  </div>
 
-                <button
-                  onClick={() => openBookingModal(pkg)}
-                  className="mt-6 w-full bg-gradient-to-r from-yellow-700 to-green-700 hover:from-yellow-600 hover:to-green-600 text-white font-bold py-2 rounded transition-all"
-                >
-                  Book Tour
-                </button>
+                  {/* Book Button */}
+                  <button
+                    onClick={() => openBookingModal(pkg)}
+                    className="w-full bg-gradient-to-r from-yellow-600 via-yellow-700 to-green-700 hover:from-yellow-500 hover:via-yellow-600 hover:to-green-600 text-white text-lg font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-yellow-900/50"
+                  >
+                    Book This Adventure →
+                  </button>
+                </div>
               </div>
             ))}
           </div>
