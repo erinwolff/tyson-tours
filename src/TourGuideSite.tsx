@@ -259,7 +259,7 @@ export default function TourGuideSite() {
     <div className="min-h-screen relative">
       <div className="pt-32 px-4 relative z-10">
         {/* Hero Section - Fixed height container */}
-        <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="min-h-screen flex flex-col items-center justify-start pt-20 md:pt-25">
           <div className="max-w-4xl mx-auto text-center">
             {/* Main title - always visible, moves up on scroll */}
             <h1
@@ -313,7 +313,7 @@ export default function TourGuideSite() {
         <div className="max-w-3xl mx-auto pb-32">
           <div
             style={{
-              opacity: Math.max(0, Math.min(1, (scrollY - 300) / 400)),
+              opacity: Math.max(0, Math.min(1, (scrollY - 1) / 50)),
             }}
           >
             <p className="text-lg md:text-xl text-stone-200 leading-relaxed mb-6">
@@ -332,9 +332,9 @@ export default function TourGuideSite() {
       {/* Testimonials Section */}
       <div className="bg-stone-800/50 border-t border-emerald-950/30 py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-emerald-700">
+          <h1 className="text-4xl font-bold text-center mb-16 text-emerald-700">
             What People Say
-          </h2>
+          </h1>
           <div className="grid md:grid-cols-4 gap-8">
             {testimonials.map((testimonial, idx) => (
               <div
@@ -533,7 +533,7 @@ export default function TourGuideSite() {
                   {/* Book Button */}
                   <button
                     onClick={() => openBookingModal(pkg)}
-                    className="w-full bg-gradient-to-r from-emerald-800 via-yellow-700 to-green-700 hover:from-emerald-700 hover:via-emerald-800 hover:to-green-600 text-white text-lg font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-emerald-950/50"
+                    className="w-full bg-gradient-to-tr from-stone-700 via-emerald-900/80 to-stone-700 hover:from-stone-600 hover:via-emerald-800/80 hover:to-stone-600 text-white text-lg font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-emerald-900/50 border border-emerald-950/30 hover:border-emerald-800/50"
                   >
                     Book This Adventure →
                   </button>
