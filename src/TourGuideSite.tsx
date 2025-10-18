@@ -220,7 +220,7 @@ export default function TourGuideSite() {
                 onClick={() => {
                   setCurrentPage(item.page);
                   closeMenu();
-                  setScrollY(0);
+                  window.scrollTo(0, 0);
                 }}
                 className={`text-left px-4 py-3 rounded-lg font-medium transition-all transform hover:translate-x-1 ${
                   currentPage === item.page
