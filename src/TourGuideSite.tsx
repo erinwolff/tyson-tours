@@ -222,7 +222,7 @@ export default function TourGuideSite() {
                   closeMenu();
                   window.scrollTo(0, 0);
                 }}
-                className={`text-left px-4 py-3 rounded-lg font-medium transition-all transform hover:translate-x-1 ${
+                className={`text-left px-4 py-3 rounded-lg font-medium transition-colors duration-300 ${
                   currentPage === item.page
                     ? 'text-emerald-700 bg-emerald-950/20 border border-emerald-950/50'
                     : 'text-stone-200 hover:text-emerald-700 hover:bg-stone-700/50'
