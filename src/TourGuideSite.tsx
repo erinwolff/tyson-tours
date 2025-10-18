@@ -132,6 +132,20 @@ export default function TourGuideSite() {
   const [loading, setLoading] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
+  // Preload background images
+  useEffect(() => {
+    const imagesToPreload = [
+      '/assets/trees.jpg',
+      '/assets/forest.jpg',
+      '/assets/river.jpg'
+    ];
+
+    imagesToPreload.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     const handleMouseMove = (e: MouseEvent) => {
@@ -245,15 +259,42 @@ export default function TourGuideSite() {
   // Navigation Component
   const Navigation = () => (
     <>
-      <nav className={`bg-gradient-to-b from-stone-900 to-transparent py-6 px-4 absolute top-0 left-0 right-0 z-40 ${lightboxOpen ? 'hidden' : ''}`}>
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-700">
+      <nav className={`bg-gradient-to-b from-stone-900 to-transparent py-6 px-4 md:px-6 absolute top-0 left-0 right-0 z-40 ${lightboxOpen ? 'hidden' : ''}`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-700 cursor-pointer"
+              onClick={() => {
+                setCurrentPage('home');
+                window.scrollTo(0, 0);
+              }}>
             Tyson Tours
           </h1>
 
-          {/* Hamburger Menu Button */}
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <button
+                key={item.page}
+                onClick={() => {
+                  setCurrentPage(item.page);
+                  window.scrollTo(0, 0);
+                }}
+                className={`relative font-medium text-lg transition-colors duration-300 group ${
+                  currentPage === item.page
+                    ? 'text-emerald-600'
+                    : 'text-stone-300 hover:text-emerald-500'
+                }`}
+              >
+                {item.label}
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-emerald-600 transition-[width] duration-300 ease-out ${
+                  currentPage === item.page ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}></span>
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Hamburger Menu Button */}
           <button
-            className="text-stone-300 hover:text-emerald-600 transition-colors z-50 relative"
+            className="md:hidden text-stone-300 hover:text-emerald-600 transition-colors z-50 relative"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -865,7 +906,6 @@ export default function TourGuideSite() {
         <div className="relative z-10 pt-40 px-4 pb-12">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-3 text-emerald-700 drop-shadow-lg">Gallery</h1>
-            <p className="text-stone-200 mb-8 md:mb-12 text-base md:text-lg bg-stone-900/60 backdrop-blur-sm p-4 rounded-lg border border-emerald-950/30 inline-block">Moments from the trail with Tyson</p>
 
           {/* Masonry Grid */}
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
