@@ -90,26 +90,56 @@ export default function TourGuideSite() {
 
   // Navigation Component
   const Navigation = () => (
-    <nav className="bg-gradient-to-b from-stone-900 to-transparent py-6 px-4">
-      <div className="max-w-6xl mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-600 to-green-500">
-          Trail Guide
-        </h1>
+    <>
+      <nav className="bg-gradient-to-b from-stone-900 to-transparent py-6 px-4 fixed top-0 left-0 right-0 z-40">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-600 to-green-500">
+            Tyson Tours
+          </h1>
 
-        {/* Hamburger Menu Button */}
-        <button
-          className="text-gray-300"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
+          {/* Hamburger Menu Button */}
+          <button
+            className="text-gray-300 hover:text-yellow-500 transition-colors z-50 relative"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+      </nav>
 
-      {/* Menu */}
+      {/* Backdrop Overlay */}
       {menuOpen && (
-        <div className="bg-stone-900 border-t border-yellow-900/30 mt-4">
-          <div className="flex flex-col gap-4 px-4 py-4">
-            {navItems.map((item) => (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-300"
+          onClick={closeMenu}
+        />
+      )}
+
+      {/* Slide-in Menu Panel */}
+      <div
+        className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-gradient-to-b from-stone-900 to-stone-800 border-l border-yellow-900/30 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex flex-col h-full">
+          {/* Menu Header */}
+          <div className="flex justify-between items-center p-6 border-b border-yellow-900/30">
+            <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-600 to-green-500">
+              Navigation
+            </h2>
+            <button
+              onClick={closeMenu}
+              className="text-gray-300 hover:text-yellow-500 transition-colors"
+              aria-label="Close menu"
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          {/* Menu Items */}
+          <div className="flex flex-col gap-2 p-6 flex-1">
+            {navItems.map((item, idx) => (
               <button
                 key={item.page}
                 onClick={() => {
@@ -117,25 +147,39 @@ export default function TourGuideSite() {
                   closeMenu();
                   setScrollY(0);
                 }}
-                className={`text-left py-2 font-medium transition-colors ${
+                className={`text-left px-4 py-3 rounded-lg font-medium transition-all transform hover:translate-x-1 ${
                   currentPage === item.page
-                    ? 'text-yellow-500'
-                    : 'text-gray-300 hover:text-yellow-500'
+                    ? 'text-yellow-500 bg-yellow-900/20 border border-yellow-900/50'
+                    : 'text-gray-300 hover:text-yellow-500 hover:bg-stone-700/50'
                 }`}
+                style={{
+                  animationDelay: `${idx * 50}ms`,
+                }}
               >
                 {item.label}
               </button>
             ))}
           </div>
+
+          {/* Menu Footer */}
+          <div className="p-6 border-t border-yellow-900/30">
+            <a
+              href="mailto:contact@trailguide.com"
+              className="flex items-center gap-2 text-gray-400 hover:text-yellow-500 transition-colors text-sm"
+            >
+              <Mail size={16} />
+              contact@trailguide.com
+            </a>
+          </div>
         </div>
-      )}
-    </nav>
+      </div>
+    </>
   );
 
   // Home Page
   const HomePage = () => (
     <div className="min-h-screen bg-gradient-to-b from-stone-900 via-emerald-950 to-stone-900">
-      <div className="pt-32 px-4 min-h-screen flex flex-col justify-between">
+      <div className="pt-40 px-4 min-h-screen flex flex-col justify-between">
         {/* Hero */}
         <div className="max-w-4xl mx-auto text-center">
           <h1
@@ -215,7 +259,7 @@ export default function TourGuideSite() {
 
   // About Page
   const AboutPage = () => (
-    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-32 px-4 pb-12">
+    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-5xl font-bold mb-8 text-yellow-500">About Us</h1>
 
@@ -254,7 +298,7 @@ export default function TourGuideSite() {
 
   // Packages Page
   const PackagesPage = () => (
-    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-32 px-4 pb-12">
+    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-5xl font-bold mb-16 text-yellow-500">Our Packages</h1>
 
@@ -308,7 +352,7 @@ export default function TourGuideSite() {
 
   // Gallery Page
   const GalleryPage = () => (
-    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-32 px-4 pb-12">
+    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-5xl font-bold mb-16 text-yellow-500">Gallery</h1>
 
@@ -338,7 +382,7 @@ export default function TourGuideSite() {
 
   // Liability Page
   const LiabilityPage = () => (
-    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-32 px-4 pb-12">
+    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-5xl font-bold mb-8 text-yellow-500">Liability & Safety</h1>
 
