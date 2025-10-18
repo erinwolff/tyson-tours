@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+/* Outdoor/Adventure Font Stack */
+body {
+  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-family: 'Bebas Neue', 'Impact', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
 @keyframes scale-in {
   0% {
     transform: scale(0.9);
