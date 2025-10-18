@@ -1,34 +1,32 @@
-import { useState, useEffect, useMemo, memo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Menu, X, ChevronDown, Clock, Mail } from 'lucide-react';
 import { Scene3D } from './components/3d/Scene3D';
 import { LoadingScreen } from './components/LoadingScreen';
 
 // Define gallery images outside component to prevent re-creation on renders
 const GALLERY_IMAGES = [
-  '/assets/WhatsApp Image 2025-09-18 at 08.05.08.jpeg',
+  '/assets/IMG-20250918-WA0024.jpg',
   '/assets/WhatsApp Image 2025-09-18 at 08.05.08(1).jpeg',
   '/assets/WhatsApp Image 2025-09-18 at 08.05.09.jpeg',
+  '/assets/IMG-20250918-WA0016.jpg',
   '/assets/WhatsApp Image 2025-09-18 at 08.07.44.jpeg',
-  '/assets/WhatsApp Image 2025-09-18 at 08.08.55.jpeg',
   '/assets/WhatsApp Image 2025-09-18 at 08.08.56.jpeg',
+   '/assets/IMG-20250918-WA0012.jpg',
   '/assets/WhatsApp Image 2025-09-18 at 08.08.56(1).jpeg',
+   '/assets/IMG-20250918-WA0023.jpg',
   '/assets/IMG-20250918-WA0001.jpg',
   '/assets/IMG-20250918-WA0004.jpg',
   '/assets/IMG-20250918-WA0006.jpg',
   '/assets/IMG-20250918-WA0007.jpg',
-  '/assets/IMG-20250918-WA0008.jpg',
   '/assets/IMG-20250918-WA0009.jpg',
   '/assets/IMG-20250918-WA0011.jpg',
-  '/assets/IMG-20250918-WA0012.jpg',
   '/assets/IMG-20250918-WA0013.jpg',
   '/assets/IMG-20250918-WA0014.jpg',
-  '/assets/IMG-20250918-WA0016.jpg',
+  '/assets/WhatsApp Image 2025-09-18 at 08.08.55.jpeg',
   '/assets/IMG-20250918-WA0017.jpg',
-  '/assets/IMG-20250918-WA0019.jpg',
   '/assets/IMG-20250918-WA0021.jpg',
   '/assets/IMG-20250918-WA0022.jpg',
-  '/assets/IMG-20250918-WA0023.jpg',
-  '/assets/IMG-20250918-WA0024.jpg',
+  '/assets/WhatsApp Image 2025-09-18 at 08.05.08.jpeg',
   '/assets/IMG-20250918-WA0026.jpg',
   '/assets/IMG-20250918-WA0027.jpg',
   '/assets/IMG-20250918-WA0028.jpg',
@@ -47,17 +45,17 @@ const POLAROID_POSITIONS = [
   // Top row - just above the text
   { left: '10%', top: '15%', rotate: -8 },
   { left: '32%', top: '14%', rotate: 5 },
-  { left: '57%', top: '16%', rotate: -3 },
+  { left: '53%', top: '16%', rotate: -3 },
   { left: '75%', top: '14%', rotate: 7 },
   // Bottom row - just below the text
-  { left: '10%', top: '65%', rotate: 4 },
-  { left: '32%', top: '80%', rotate: -8 },
-  { left: '57%', top: '80%', rotate: 3 },
-  { left: '80%', top: '65%', rotate: -5 },
+  { left: '10%', top: '45%', rotate: 4 },
+  { left: '75%', top: '75%', rotate: 8 },
+  { left: '10%', top: '75%', rotate: -4 },
+  { left: '75%', top: '45%', rotate: -5 },
 ];
 
 // Scattered Polaroid Gallery component
-const PolaroidGallery = memo(({ scrollY }: { scrollY: number }) => {
+const PolaroidGallery = ({ scrollY }: { scrollY: number }) => {
   const opacity = Math.max(0, Math.min(1, (scrollY - 100) / 200));
 
   // Select a subset of images for the polaroid display
@@ -103,13 +101,7 @@ const PolaroidGallery = memo(({ scrollY }: { scrollY: number }) => {
       </div>
     </div>
   );
-}, (prevProps, nextProps) => {
-  const prevOpacity = prevProps.scrollY < 400 ? 0 : Math.min(1, (prevProps.scrollY - 400) / 200);
-  const nextOpacity = nextProps.scrollY < 400 ? 0 : Math.min(1, (nextProps.scrollY - 400) / 200);
-  return Math.abs(prevOpacity - nextOpacity) < 0.1;
-});
-
-PolaroidGallery.displayName = 'PolaroidGallery';
+};
 
 export default function TourGuideSite() {
   const [currentPage, setCurrentPage] = useState('home');
