@@ -59,8 +59,8 @@ const PolaroidGallery = ({ scrollY }: { scrollY: number }) => {
       }}
     >
       <div className="max-w-5xl mx-auto px-4 mb-20 sm:mb-28 lg:mb-36 xl:mb-44">
-        {/* Mobile/Tablet: 2x3 grid (6 photos) */}
-        <div className="lg:hidden grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-8 sm:gap-y-10">
+        {/* Mobile only: 2x3 grid (6 photos) */}
+        <div className="md:hidden grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-8 sm:gap-y-10">
           {mobileImages.map((img, index) => (
             <div
               key={`polaroid-mobile-${index}`}
@@ -83,8 +83,8 @@ const PolaroidGallery = ({ scrollY }: { scrollY: number }) => {
           ))}
         </div>
 
-        {/* Desktop: 4x2 grid */}
-        <div className="hidden lg:grid grid-cols-4 gap-x-6 gap-y-8 xl:gap-x-8 xl:gap-y-12">
+        {/* iPad & Desktop: 4x2 grid */}
+        <div className="hidden md:grid grid-cols-4 gap-x-6 gap-y-8 xl:gap-x-8 xl:gap-y-12">
           {desktopImages.map((img, index) => (
             <div
               key={`polaroid-${index}`}
@@ -389,7 +389,7 @@ export default function TourGuideSite() {
         </div>
 
         {/* Description Section - Appears after scroll */}
-        <div className="max-w-3xl mx-auto pb-32 relative z-20 px-4 pt-120 sm:pt-150 md:pt-150 lg:pt-80 xl:pt-120">
+        <div className="max-w-3xl mx-auto pb-32 relative z-20 px-4 pt-120 sm:pt-150 md:pt-80 lg:pt-80 xl:pt-120">
           <div
             className="text-center md:text-left bg-stone-900/80 backdrop-blur-sm p-6 sm:p-8 rounded-lg"
             style={{
