@@ -51,16 +51,20 @@ export default function TourGuideSite() {
 
   const testimonials = [
     {
-      name: 'Sarah M.',
-      text: 'Best tour guide experience I\'ve ever had. The knowledge and passion for the trails is unmatched.',
+      name: 'Meryl Streep',
+      text: 'What a rockin time. Tyson taught us all about the Yellowstone river while we crushed beers with the boys! 10/10 would recommend.',
     },
     {
-      name: 'Marcus T.',
-      text: 'Incredible attention to detail. Made me appreciate nature in ways I never expected.',
+      name: 'Creative Team for Helldiver',
+      text: 'We had the best time last night! Ripping doobs while riding bikes around Bozeman was an epic way to spend our vacation. Tyson even put me in the basket on his bike when I was too drunk to pedal home for the night.',
     },
     {
-      name: 'Elena K.',
-      text: 'Professional, knowledgeable, and genuinely cares about your experience. Highly recommended.',
+      name: 'George Washington and Thomas Jefferson',
+      text: 'Our custom Tyson Tour was one for the history books! We learned all about the local culture in the Black Feet and Crow communities. It was amazing to see how our past policies and laws written directly affected these peoples. I\'ve recommended these tours to all my colleagues.',
+    },
+    {
+      name: 'Hayao Miyazaki',
+      text: 'Tyson gave our kids the funnest afternoon we\'ve ever had. We learned all about the local ecology down on the farm, even got to participate in his coveted Miyazaki method! We will be back.',
     },
   ];
 
@@ -141,7 +145,7 @@ export default function TourGuideSite() {
               transform: `translateY(${scrollY * 0.3}px)`,
             }}
           >
-            Explore Nature
+            Tyson Tours
           </h1>
           <p
             className="text-xl md:text-2xl text-gray-300 mb-12"
