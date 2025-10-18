@@ -41,6 +41,13 @@ export default function TourGuideSite() {
     };
   }, []);
 
+  // Scroll to top when navigating to home page
+  useEffect(() => {
+    if (currentPage === 'home') {
+      window.scrollTo(0, 0);
+    }
+  }, [currentPage]);
+
   const closeMenu = () => setMenuOpen(false);
 
   const packages = [
@@ -166,7 +173,7 @@ export default function TourGuideSite() {
   // Navigation Component
   const Navigation = () => (
     <>
-      <nav className="bg-gradient-to-b from-stone-900 to-transparent py-6 px-4 fixed top-0 left-0 right-0 z-40">
+      <nav className={`bg-gradient-to-b from-stone-900 to-transparent py-6 px-4 absolute top-0 left-0 right-0 z-40 ${lightboxOpen ? 'hidden' : ''}`}>
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-700">
             Tyson Tours
@@ -712,10 +719,6 @@ export default function TourGuideSite() {
       setLightboxOpen(true);
     };
 
-    const closeLightbox = () => {
-      setLightboxOpen(false);
-    };
-
     const nextImage = () => {
       if (isNavigating) return;
       setIsNavigating(true);
@@ -730,20 +733,45 @@ export default function TourGuideSite() {
       setTimeout(() => setIsNavigating(false), 200);
     };
 
+    // Keyboard navigation for lightbox
+    useEffect(() => {
+      if (!lightboxOpen) return;
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          setLightboxOpen(false);
+        } else if (e.key === 'ArrowLeft') {
+          if (!isNavigating) {
+            setIsNavigating(true);
+            setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+            setTimeout(() => setIsNavigating(false), 200);
+          }
+        } else if (e.key === 'ArrowRight') {
+          if (!isNavigating) {
+            setIsNavigating(true);
+            setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+            setTimeout(() => setIsNavigating(false), 200);
+          }
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [lightboxOpen, isNavigating, galleryImages.length]);
+
     return (
       <div className="min-h-screen relative overflow-hidden">
-        {/* Background */}
+        {/* Fixed Background */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="fixed inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url(/assets/trees.jpg)',
             filter: 'brightness(0.4)',
-            willChange: 'transform',
           }}
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/50 to-emerald-950/70" />
+        <div className="fixed inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/50 to-emerald-950/70" />
 
         <div className="relative z-10 pt-40 px-4 pb-12">
           <div className="max-w-7xl mx-auto">
@@ -781,15 +809,23 @@ export default function TourGuideSite() {
 
           {/* Lightbox Modal */}
           {lightboxOpen && (
-            <div className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center p-0 md:p-4">
+            <div
+              className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-0 md:p-4"
+              onClick={() => setLightboxOpen(false)}
+            >
               {/* Close Button */}
-              <button
-                onClick={closeLightbox}
-                className="absolute top-3 right-3 md:top-4 md:right-4 text-white hover:text-emerald-700 active:text-emerald-700 transition-colors z-[70] bg-stone-900/70 md:bg-transparent rounded-full p-2 md:p-0"
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxOpen(false);
+                }}
+                className="absolute top-4 right-4 md:top-6 md:right-6 text-white hover:text-emerald-700 active:text-emerald-700 transition-colors z-[10000] bg-stone-900/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-stone-700/50 cursor-pointer"
+                role="button"
                 aria-label="Close lightbox"
+                tabIndex={0}
               >
-                <X size={32} className="md:w-10 md:h-10" />
-              </button>
+                <X size={28} className="md:w-8 md:h-8" />
+              </div>
 
               {/* Previous Button - Desktop */}
               <button
@@ -810,7 +846,7 @@ export default function TourGuideSite() {
               </button>
 
               {/* Image Container */}
-              <div className="max-w-5xl max-h-[90vh] w-full flex items-center justify-center touch-pan-x">
+              <div className="max-w-5xl max-h-[90vh] w-full flex items-center justify-center touch-pan-x" onClick={(e) => e.stopPropagation()}>
                 <img
                   src={galleryImages[currentImageIndex]}
                   alt={`Gallery image ${currentImageIndex + 1}`}
