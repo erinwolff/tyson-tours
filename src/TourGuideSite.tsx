@@ -165,14 +165,14 @@ export default function TourGuideSite() {
             ))}
           </div>
 
-          {/* Menu Footer */}
+          {/* Email Footer */}
           <div className="p-6 border-t border-yellow-900/30">
             <a
-              href="mailto:contact@trailguide.com"
+              href="mailto:tysontours.contact@gmail.com"
               className="flex items-center gap-2 text-gray-400 hover:text-yellow-500 transition-colors text-sm"
             >
               <Mail size={16} />
-              contact@trailguide.com
+              tysontours.contact@gmail.com
             </a>
           </div>
         </div>
@@ -302,11 +302,11 @@ export default function TourGuideSite() {
         <div className="mt-16 border-t border-yellow-900/30 pt-8">
           <p className="text-gray-400 text-center mb-4">Questions? Get in touch:</p>
           <a
-            href="mailto:contact@trailguide.com"
+            href="mailto:tysontours.contact@gmail.com"
             className="flex items-center justify-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
           >
             <Mail size={20} />
-            contact@trailguide.com
+            tysontours.contact@gmail.com
           </a>
           <p className="text-gray-500 text-xs mt-4 text-center">
             Made by{' '}
@@ -367,11 +367,11 @@ export default function TourGuideSite() {
         <div className="mt-16 border-t border-yellow-900/30 pt-8">
           <p className="text-gray-400 text-center mb-4">Ready to explore? Contact us:</p>
           <a
-            href="mailto:contact@trailguide.com"
+            href="mailto:tysontours.contact@gmail.com"
             className="flex items-center justify-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
           >
             <Mail size={20} />
-            contact@trailguide.com
+            tysontours.contact@gmail.com
           </a>
           <p className="text-gray-500 text-xs mt-4 text-center">
             Made by{' '}
@@ -408,11 +408,11 @@ export default function TourGuideSite() {
         <div className="mt-16 border-t border-yellow-900/30 pt-8">
           <p className="text-gray-400 text-center mb-4">Inspired? Let's plan your adventure:</p>
           <a
-            href="mailto:contact@trailguide.com"
+            href="mailto:tysontours.contact@gmail.com"
             className="flex items-center justify-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
           >
             <Mail size={20} />
-            contact@trailguide.com
+            tysontours.contact@gmail.com
           </a>
           <p className="text-gray-500 text-xs mt-4 text-center">
             Made by{' '}
@@ -570,11 +570,11 @@ export default function TourGuideSite() {
           <div className="mt-16 border-t border-yellow-900/30 pt-8">
             <p className="text-gray-400 text-center mb-4">Questions about the waiver? Hit us up:</p>
             <a
-              href="mailto:contact@trailguide.com"
+              href="mailto:tysontours.contact@gmail.com"
               className="flex items-center justify-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
             >
               <Mail size={20} />
-              contact@trailguide.com
+              tysontours.contact@gmail.com
             </a>
             <p className="text-gray-500 text-xs mt-4 text-center">
               Made by{' '}
