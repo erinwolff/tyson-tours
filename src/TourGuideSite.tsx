@@ -5,38 +5,38 @@ import { LoadingScreen } from './components/LoadingScreen';
 
 // Define gallery images outside component to prevent re-creation on renders
 const GALLERY_IMAGES = [
-  '/assets/IMG-20250918-WA0024.jpg',
-  '/assets/WhatsApp Image 2025-09-18 at 08.05.08(1).jpeg',
-  '/assets/WhatsApp Image 2025-09-18 at 08.05.09.jpeg',
-  '/assets/IMG-20250918-WA0016.jpg',
-  '/assets/WhatsApp Image 2025-09-18 at 08.07.44.jpeg',
-  '/assets/WhatsApp Image 2025-09-18 at 08.08.56.jpeg',
-   '/assets/IMG-20250918-WA0012.jpg',
-  '/assets/WhatsApp Image 2025-09-18 at 08.08.56(1).jpeg',
-   '/assets/IMG-20250918-WA0023.jpg',
-  '/assets/IMG-20250918-WA0001.jpg',
-  '/assets/IMG-20250918-WA0004.jpg',
-  '/assets/IMG-20250918-WA0006.jpg',
-  '/assets/IMG-20250918-WA0007.jpg',
-  '/assets/IMG-20250918-WA0009.jpg',
-  '/assets/IMG-20250918-WA0011.jpg',
-  '/assets/IMG-20250918-WA0013.jpg',
-  '/assets/IMG-20250918-WA0014.jpg',
-  '/assets/WhatsApp Image 2025-09-18 at 08.08.55.jpeg',
-  '/assets/IMG-20250918-WA0017.jpg',
-  '/assets/IMG-20250918-WA0021.jpg',
-  '/assets/IMG-20250918-WA0022.jpg',
-  '/assets/WhatsApp Image 2025-09-18 at 08.05.08.jpeg',
-  '/assets/IMG-20250918-WA0026.jpg',
-  '/assets/IMG-20250918-WA0027.jpg',
-  '/assets/IMG-20250918-WA0028.jpg',
-  '/assets/IMG-20250918-WA0029.jpg',
-  '/assets/IMG-20250918-WA0005.jpg',
-  '/assets/IMG-20250918-WA0010.jpg',
-  '/assets/IMG-20250918-WA0015.jpg',
-  '/assets/IMG-20250918-WA0020.jpg',
-  '/assets/IMG-20250918-WA0025.jpg',
-  '/assets/IMG-20250918-WA0030.jpg',
+  '/IMG-20250918-WA0024.jpg',
+  '/WhatsApp Image 2025-09-18 at 08.05.08(1).jpeg',
+  '/WhatsApp Image 2025-09-18 at 08.05.09.jpeg',
+  '/IMG-20250918-WA0016.jpg',
+  '/WhatsApp Image 2025-09-18 at 08.07.44.jpeg',
+  '/WhatsApp Image 2025-09-18 at 08.08.56.jpeg',
+   '/IMG-20250918-WA0012.jpg',
+  '/WhatsApp Image 2025-09-18 at 08.08.56(1).jpeg',
+   '/IMG-20250918-WA0023.jpg',
+  '/IMG-20250918-WA0001.jpg',
+  '/IMG-20250918-WA0004.jpg',
+  '/IMG-20250918-WA0006.jpg',
+  '/IMG-20250918-WA0007.jpg',
+  '/IMG-20250918-WA0009.jpg',
+  '/IMG-20250918-WA0011.jpg',
+  '/IMG-20250918-WA0013.jpg',
+  '/IMG-20250918-WA0014.jpg',
+  '/WhatsApp Image 2025-09-18 at 08.08.55.jpeg',
+  '/IMG-20250918-WA0017.jpg',
+  '/IMG-20250918-WA0021.jpg',
+  '/IMG-20250918-WA0022.jpg',
+  '/WhatsApp Image 2025-09-18 at 08.05.08.jpeg',
+  '/IMG-20250918-WA0026.jpg',
+  '/IMG-20250918-WA0027.jpg',
+  '/IMG-20250918-WA0028.jpg',
+  '/IMG-20250918-WA0029.jpg',
+  '/IMG-20250918-WA0005.jpg',
+  '/IMG-20250918-WA0010.jpg',
+  '/IMG-20250918-WA0015.jpg',
+  '/IMG-20250918-WA0020.jpg',
+  '/IMG-20250918-WA0025.jpg',
+  '/IMG-20250918-WA0030.jpg',
 ];
 
 // Polaroid rotation angles for variety
@@ -491,7 +491,7 @@ export default function TourGuideSite() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: 'url(/assets/forest.jpg)',
+          backgroundImage: 'url(/forest.jpg)',
           filter: 'brightness(0.4)',
         }}
       />
@@ -515,7 +515,7 @@ export default function TourGuideSite() {
             {/* Tyson's Photo */}
             <div className="bg-stone-900/60 backdrop-blur-sm p-4 rounded-lg border border-emerald-950/30">
               <img
-                src="/assets/IMG-20250918-WA0018.jpg"
+                src="/IMG-20250918-WA0018.jpg"
                 alt="Tyson on an adventure"
                 className="w-full h-auto rounded-lg shadow-lg object-cover"
               />
@@ -600,7 +600,7 @@ export default function TourGuideSite() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/assets/river.jpg)',
+            backgroundImage: 'url(/river.jpg)',
             filter: 'brightness(0.4)',
           }}
         />
@@ -882,7 +882,7 @@ export default function TourGuideSite() {
         <div
           className="fixed inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/assets/trees.jpg)',
+            backgroundImage: 'url(/trees.jpg)',
             filter: 'brightness(0.4)',
           }}
         />
