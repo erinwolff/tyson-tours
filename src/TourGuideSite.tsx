@@ -39,65 +39,73 @@ const GALLERY_IMAGES = [
   '/assets/IMG-20250918-WA0030.jpg',
 ];
 
-// Polaroid positions - predefined for consistent layout
-// Positioned close to text box but not overlapping
-const POLAROID_POSITIONS = [
-  // Top row - just above the text
-  { left: '10%', top: '15%', rotate: -8 },
-  { left: '32%', top: '14%', rotate: 5 },
-  { left: '53%', top: '16%', rotate: -3 },
-  { left: '75%', top: '14%', rotate: 7 },
-  // Bottom row - just below the text
-  { left: '10%', top: '45%', rotate: 4 },
-  { left: '75%', top: '75%', rotate: 8 },
-  { left: '10%', top: '75%', rotate: -4 },
-  { left: '75%', top: '45%', rotate: -5 },
-];
+// Polaroid rotation angles for variety
+const POLAROID_ROTATIONS = [-8, 5, -3, 7, 4, -6, 3, -5];
 
-// Scattered Polaroid Gallery component
+// Scattered Polaroid Gallery component - Grid layout before text
 const PolaroidGallery = ({ scrollY }: { scrollY: number }) => {
   const opacity = Math.max(0, Math.min(1, (scrollY - 100) / 200));
 
-  // Select a subset of images for the polaroid display
-  const selectedImages = GALLERY_IMAGES.slice(0, 8);
+  // Select images
+  const desktopImages = GALLERY_IMAGES.slice(0, 8);
+  const mobileImages = GALLERY_IMAGES.slice(0, 6);
 
   return (
     <div
       className="absolute w-full left-0 pointer-events-none z-0"
       style={{
-        top: 'calc(100vh - 20rem)',
-        height: '120vh',
+        top: 'calc(100vh + 2rem)',
         opacity
       }}
     >
-      <div className="relative w-full h-full">
-        {selectedImages.map((img, index) => {
-          const position = POLAROID_POSITIONS[index];
-          const delay = index * 0.1;
-
-          return (
+      <div className="max-w-5xl mx-auto px-4 mb-20 sm:mb-28 lg:mb-36 xl:mb-44">
+        {/* Mobile/Tablet: 2x3 grid (6 photos) */}
+        <div className="lg:hidden grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-8 sm:gap-y-10">
+          {mobileImages.map((img, index) => (
             <div
-              key={`polaroid-${index}`}
-              className="absolute polaroid-photo"
+              key={`polaroid-mobile-${index}`}
+              className="polaroid-photo justify-self-center"
               style={{
-                left: position.left,
-                top: position.top,
-                '--rotation': `${position.rotate}deg`,
-                animationDelay: `${delay}s`
+                '--rotation': `${POLAROID_ROTATIONS[index]}deg`,
+                animationDelay: `${index * 0.15}s`
               } as React.CSSProperties & { '--rotation': string }}
             >
-              <div className="bg-white p-3 shadow-2xl">
+              <div className="bg-white p-2 shadow-2xl">
                 <img
                   src={img}
                   alt={`Adventure memory ${index + 1}`}
-                  className="w-44 h-36 md:w-52 md:h-44 object-cover"
+                  className="w-32 h-28 sm:w-36 sm:h-32 object-cover"
                   loading="eager"
                 />
-                <div className="h-8 md:h-10" />
+                <div className="h-5 sm:h-6" />
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
+
+        {/* Desktop: 4x2 grid */}
+        <div className="hidden lg:grid grid-cols-4 gap-x-6 gap-y-8 xl:gap-x-8 xl:gap-y-12">
+          {desktopImages.map((img, index) => (
+            <div
+              key={`polaroid-${index}`}
+              className="polaroid-photo justify-self-center"
+              style={{
+                '--rotation': `${POLAROID_ROTATIONS[index]}deg`,
+                animationDelay: `${index * 0.1}s`
+              } as React.CSSProperties & { '--rotation': string }}
+            >
+              <div className="bg-white p-2 xl:p-3 shadow-2xl">
+                <img
+                  src={img}
+                  alt={`Adventure memory ${index + 1}`}
+                  className="w-32 h-28 xl:w-40 xl:h-34 2xl:w-48 2xl:h-40 object-cover"
+                  loading="eager"
+                />
+                <div className="h-6 xl:h-8 2xl:h-10" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -381,9 +389,9 @@ export default function TourGuideSite() {
         </div>
 
         {/* Description Section - Appears after scroll */}
-        <div className="max-w-3xl mx-auto pb-32 relative z-20 px-4">
+        <div className="max-w-3xl mx-auto pb-32 relative z-20 px-4 pt-120 sm:pt-150 md:pt-150 lg:pt-80 xl:pt-120">
           <div
-            className="text-center md:text-left bg-stone-900/80 backdrop-blur-sm p-8 rounded-lg"
+            className="text-center md:text-left bg-stone-900/80 backdrop-blur-sm p-6 sm:p-8 rounded-lg"
             style={{
               opacity: Math.max(0, Math.min(1, (scrollY - 1) / 50)),
             }}
