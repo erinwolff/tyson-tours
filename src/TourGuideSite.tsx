@@ -9,6 +9,9 @@ export default function TourGuideSite() {
   const [liabilityAgreed, setLiabilityAgreed] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [submittedName, setSubmittedName] = useState('');
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -72,17 +75,43 @@ export default function TourGuideSite() {
     },
   ];
 
-  const galleryImages = Array.from({ length: 30 }, (_, i) => ({
-    id: i + 1,
-    gradient: [
-      'from-amber-900 to-green-900',
-      'from-emerald-900 to-teal-900',
-      'from-yellow-900 to-amber-900',
-      'from-green-900 to-slate-900',
-      'from-stone-800 to-green-800',
-      'from-yellow-800 to-green-900',
-    ][i % 6],
-  }));
+  const galleryImages = [
+    '/assets/WhatsApp Image 2025-09-18 at 08.05.08.jpeg',
+    '/assets/WhatsApp Image 2025-09-18 at 08.05.08(1).jpeg',
+    '/assets/WhatsApp Image 2025-09-18 at 08.05.09.jpeg',
+    '/assets/WhatsApp Image 2025-09-18 at 08.07.44.jpeg',
+    '/assets/WhatsApp Image 2025-09-18 at 08.08.55.jpeg',
+    '/assets/WhatsApp Image 2025-09-18 at 08.08.56.jpeg',
+    '/assets/WhatsApp Image 2025-09-18 at 08.08.56(1).jpeg',
+    '/assets/IMG-20250918-WA0001.jpg',
+    '/assets/IMG-20250918-WA0004.jpg',
+    '/assets/IMG-20250918-WA0005.jpg',
+    '/assets/IMG-20250918-WA0006.jpg',
+    '/assets/IMG-20250918-WA0007.jpg',
+    '/assets/IMG-20250918-WA0008.jpg',
+    '/assets/IMG-20250918-WA0009.jpg',
+    '/assets/IMG-20250918-WA0010.jpg',
+    '/assets/IMG-20250918-WA0011.jpg',
+    '/assets/IMG-20250918-WA0012.jpg',
+    '/assets/IMG-20250918-WA0013.jpg',
+    '/assets/IMG-20250918-WA0014.jpg',
+    '/assets/IMG-20250918-WA0015.jpg',
+    '/assets/IMG-20250918-WA0016.jpg',
+    '/assets/IMG-20250918-WA0017.jpg',
+    '/assets/IMG-20250918-WA0018.jpg',
+    '/assets/IMG-20250918-WA0019.jpg',
+    '/assets/IMG-20250918-WA0020.jpg',
+    '/assets/IMG-20250918-WA0021.jpg',
+    '/assets/IMG-20250918-WA0022.jpg',
+    '/assets/IMG-20250918-WA0023.jpg',
+    '/assets/IMG-20250918-WA0024.jpg',
+    '/assets/IMG-20250918-WA0025.jpg',
+    '/assets/IMG-20250918-WA0026.jpg',
+    '/assets/IMG-20250918-WA0027.jpg',
+    '/assets/IMG-20250918-WA0028.jpg',
+    '/assets/IMG-20250918-WA0029.jpg',
+    '/assets/IMG-20250918-WA0030.jpg',
+  ];
 
   const navItems = [
     { label: 'Home', page: 'home' },
@@ -390,45 +419,163 @@ export default function TourGuideSite() {
   );
 
   // Gallery Page
-  const GalleryPage = () => (
-    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-5xl font-bold mb-16 text-yellow-500">Gallery</h1>
+  const GalleryPage = () => {
+    const openLightbox = (index: number) => {
+      setCurrentImageIndex(index);
+      setLightboxOpen(true);
+    };
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {galleryImages.map((img) => (
-            <div
-              key={img.id}
-              className={`h-56 rounded-lg bg-gradient-to-br ${img.gradient} hover:shadow-lg hover:shadow-yellow-900/50 transition-all transform hover:scale-105 cursor-pointer`}
-            />
-          ))}
-        </div>
+    const closeLightbox = () => {
+      setLightboxOpen(false);
+    };
 
-        {/* Email Footer */}
-        <div className="mt-16 border-t border-yellow-900/30 pt-8">
-          <p className="text-gray-400 text-center mb-4">Inspired? Let's plan your adventure:</p>
-          <a
-            href="mailto:tysontours.contact@gmail.com"
-            className="flex items-center justify-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
-          >
-            <Mail size={20} />
-            tysontours.contact@gmail.com
-          </a>
-          <p className="text-gray-500 text-xs mt-4 text-center">
-            Made by{' '}
+    const nextImage = () => {
+      if (isNavigating) return;
+      setIsNavigating(true);
+      setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+      setTimeout(() => setIsNavigating(false), 200);
+    };
+
+    const prevImage = () => {
+      if (isNavigating) return;
+      setIsNavigating(true);
+      setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+      setTimeout(() => setIsNavigating(false), 200);
+    };
+
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3 text-yellow-500">Gallery</h1>
+          <p className="text-gray-400 mb-8 md:mb-12 text-base md:text-lg">Moments from the trail with Tyson</p>
+
+          {/* Masonry Grid */}
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
+            {galleryImages.map((img, index) => (
+              <div
+                key={index}
+                className="break-inside-avoid mb-3 md:mb-4 group cursor-pointer active:scale-95 transition-transform"
+                onClick={() => openLightbox(index)}
+              >
+                <div className="relative overflow-hidden rounded-lg md:rounded-xl shadow-lg hover:shadow-2xl hover:shadow-yellow-900/50 transition-all duration-300 border-2 border-transparent active:border-yellow-500/50">
+                  <img
+                    src={img}
+                    alt={`Gallery image ${index + 1}`}
+                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110 group-active:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 flex items-end p-3 md:p-4">
+                    <span className="text-white font-semibold text-xs md:text-sm">Tap to view</span>
+                  </div>
+                  {/* Mobile tap indicator */}
+                  <div className="absolute top-2 right-2 md:hidden bg-black/50 backdrop-blur-sm rounded-full p-1.5">
+                    <svg className="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Lightbox Modal */}
+          {lightboxOpen && (
+            <div className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center p-0 md:p-4">
+              {/* Close Button */}
+              <button
+                onClick={closeLightbox}
+                className="absolute top-3 right-3 md:top-4 md:right-4 text-white hover:text-yellow-500 active:text-yellow-500 transition-colors z-[70] bg-stone-900/70 md:bg-transparent rounded-full p-2 md:p-0"
+                aria-label="Close lightbox"
+              >
+                <X size={32} className="md:w-10 md:h-10" />
+              </button>
+
+              {/* Previous Button - Desktop */}
+              <button
+                onClick={prevImage}
+                className="hidden md:block absolute left-4 text-white hover:text-yellow-500 transition-colors z-[70] bg-stone-900/50 hover:bg-stone-800/50 rounded-full p-3"
+                aria-label="Previous image"
+              >
+                <ChevronDown size={40} className="rotate-90" />
+              </button>
+
+              {/* Next Button - Desktop */}
+              <button
+                onClick={nextImage}
+                className="hidden md:block absolute right-4 text-white hover:text-yellow-500 transition-colors z-[70] bg-stone-900/50 hover:bg-stone-800/50 rounded-full p-3"
+                aria-label="Next image"
+              >
+                <ChevronDown size={40} className="-rotate-90" />
+              </button>
+
+              {/* Image Container */}
+              <div className="max-w-5xl max-h-[90vh] w-full flex items-center justify-center touch-pan-x">
+                <img
+                  src={galleryImages[currentImageIndex]}
+                  alt={`Gallery image ${currentImageIndex + 1}`}
+                  className="max-w-full max-h-[90vh] object-contain md:rounded-lg shadow-2xl"
+                />
+              </div>
+
+              {/* Mobile Navigation Buttons */}
+              <div className="md:hidden absolute bottom-20 left-0 right-0 flex justify-center gap-4 z-[70]">
+                <button
+                  onClick={prevImage}
+                  className="bg-stone-900/80 backdrop-blur-sm text-white active:text-yellow-500 rounded-full p-4 active:scale-95 transition-all shadow-lg"
+                  aria-label="Previous image"
+                >
+                  <ChevronDown size={28} className="rotate-90" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="bg-stone-900/80 backdrop-blur-sm text-white active:text-yellow-500 rounded-full p-4 active:scale-95 transition-all shadow-lg"
+                  aria-label="Next image"
+                >
+                  <ChevronDown size={28} className="-rotate-90" />
+                </button>
+              </div>
+
+              {/* Image Counter */}
+              <div className="absolute bottom-4 md:bottom-4 left-1/2 transform -translate-x-1/2 bg-stone-900/90 backdrop-blur-sm px-4 md:px-6 py-2 rounded-full z-[70]">
+                <span className="text-white font-semibold text-sm md:text-base">
+                  {currentImageIndex + 1} / {galleryImages.length}
+                </span>
+              </div>
+
+              {/* Swipe hint for mobile */}
+              <div className="md:hidden absolute top-1/2 left-4 right-4 flex justify-between pointer-events-none opacity-30">
+                <div className="text-white text-4xl">‹</div>
+                <div className="text-white text-4xl">›</div>
+              </div>
+            </div>
+          )}
+
+          {/* Email Footer */}
+          <div className="mt-16 border-t border-yellow-900/30 pt-8">
+            <p className="text-gray-400 text-center mb-4">Inspired? Let's plan your adventure:</p>
             <a
-              href="https://github.com/erinwolff"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-yellow-500 transition-colors"
+              href="mailto:tysontours.contact@gmail.com"
+              className="flex items-center justify-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
             >
-              Erin Wolff
+              <Mail size={20} />
+              tysontours.contact@gmail.com
             </a>
-          </p>
+            <p className="text-gray-500 text-xs mt-4 text-center">
+              Made by{' '}
+              <a
+                href="https://github.com/erinwolff"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-yellow-500 transition-colors"
+              >
+                Erin Wolff
+              </a>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   // Liability Page
   const LiabilityPage = useMemo(() => {
