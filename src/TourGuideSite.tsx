@@ -695,8 +695,14 @@ export default function TourGuideSite() {
 
           {/* Booking Modal */}
           {bookingModalOpen && selectedPackage && (
-            <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-              <div className="bg-gradient-to-br from-stone-900 to-stone-800 border-2 border-emerald-950/50 rounded-lg p-8 max-w-lg w-full shadow-2xl shadow-emerald-950/50 max-h-[90vh] overflow-y-auto">
+            <div
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              onClick={closeBookingModal}
+            >
+              <div
+                className="bg-gradient-to-br from-stone-900 to-stone-800 border-2 border-emerald-950/50 rounded-lg p-8 max-w-lg w-full shadow-2xl shadow-emerald-950/50 max-h-[90vh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
                 {!bookingSuccess ? (
                   <>
                     <div className="flex justify-between items-start mb-6">
@@ -1063,9 +1069,15 @@ export default function TourGuideSite() {
           {showSuccess && (
             <>
               {/* Backdrop */}
-              <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+              <div
+                className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                onClick={() => setShowSuccess(false)}
+              >
                 {/* Modal */}
-                <div className="bg-gradient-to-br from-green-900 to-emerald-900 border-2 border-green-500 rounded-lg p-8 max-w-md w-full shadow-2xl shadow-green-500/50 animate-scale-in">
+                <div
+                  className="bg-gradient-to-br from-green-900 to-emerald-900 border-2 border-green-500 rounded-lg p-8 max-w-md w-full shadow-2xl shadow-green-500/50 animate-scale-in"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <div className="text-center">
                     <div className="mb-4 text-green-400 text-6xl">✓</div>
                     <h3 className="text-3xl font-bold text-green-400 mb-4">Waiver Signed!</h3>
