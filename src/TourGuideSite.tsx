@@ -1,7 +1,115 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, memo } from 'react';
 import { Menu, X, ChevronDown, Clock, Mail } from 'lucide-react';
 import { Scene3D } from './components/3d/Scene3D';
 import { LoadingScreen } from './components/LoadingScreen';
+
+// Define gallery images outside component to prevent re-creation on renders
+const GALLERY_IMAGES = [
+  '/assets/WhatsApp Image 2025-09-18 at 08.05.08.jpeg',
+  '/assets/WhatsApp Image 2025-09-18 at 08.05.08(1).jpeg',
+  '/assets/WhatsApp Image 2025-09-18 at 08.05.09.jpeg',
+  '/assets/WhatsApp Image 2025-09-18 at 08.07.44.jpeg',
+  '/assets/WhatsApp Image 2025-09-18 at 08.08.55.jpeg',
+  '/assets/WhatsApp Image 2025-09-18 at 08.08.56.jpeg',
+  '/assets/WhatsApp Image 2025-09-18 at 08.08.56(1).jpeg',
+  '/assets/IMG-20250918-WA0001.jpg',
+  '/assets/IMG-20250918-WA0004.jpg',
+  '/assets/IMG-20250918-WA0006.jpg',
+  '/assets/IMG-20250918-WA0007.jpg',
+  '/assets/IMG-20250918-WA0008.jpg',
+  '/assets/IMG-20250918-WA0009.jpg',
+  '/assets/IMG-20250918-WA0011.jpg',
+  '/assets/IMG-20250918-WA0012.jpg',
+  '/assets/IMG-20250918-WA0013.jpg',
+  '/assets/IMG-20250918-WA0014.jpg',
+  '/assets/IMG-20250918-WA0016.jpg',
+  '/assets/IMG-20250918-WA0017.jpg',
+  '/assets/IMG-20250918-WA0019.jpg',
+  '/assets/IMG-20250918-WA0021.jpg',
+  '/assets/IMG-20250918-WA0022.jpg',
+  '/assets/IMG-20250918-WA0023.jpg',
+  '/assets/IMG-20250918-WA0024.jpg',
+  '/assets/IMG-20250918-WA0026.jpg',
+  '/assets/IMG-20250918-WA0027.jpg',
+  '/assets/IMG-20250918-WA0028.jpg',
+  '/assets/IMG-20250918-WA0029.jpg',
+  '/assets/IMG-20250918-WA0005.jpg',
+  '/assets/IMG-20250918-WA0010.jpg',
+  '/assets/IMG-20250918-WA0015.jpg',
+  '/assets/IMG-20250918-WA0020.jpg',
+  '/assets/IMG-20250918-WA0025.jpg',
+  '/assets/IMG-20250918-WA0030.jpg',
+];
+
+// Polaroid positions - predefined for consistent layout
+// Positioned close to text box but not overlapping
+const POLAROID_POSITIONS = [
+  // Top row - just above the text
+  { left: '10%', top: '15%', rotate: -8 },
+  { left: '32%', top: '14%', rotate: 5 },
+  { left: '57%', top: '16%', rotate: -3 },
+  { left: '75%', top: '14%', rotate: 7 },
+  // Bottom row - just below the text
+  { left: '10%', top: '65%', rotate: 4 },
+  { left: '32%', top: '80%', rotate: -8 },
+  { left: '57%', top: '80%', rotate: 3 },
+  { left: '80%', top: '65%', rotate: -5 },
+];
+
+// Scattered Polaroid Gallery component
+const PolaroidGallery = memo(({ scrollY }: { scrollY: number }) => {
+  const opacity = Math.max(0, Math.min(1, (scrollY - 100) / 200));
+
+  // Select a subset of images for the polaroid display
+  const selectedImages = GALLERY_IMAGES.slice(0, 8);
+
+  return (
+    <div
+      className="absolute w-full left-0 pointer-events-none z-0"
+      style={{
+        top: 'calc(100vh - 20rem)',
+        height: '120vh',
+        opacity
+      }}
+    >
+      <div className="relative w-full h-full">
+        {selectedImages.map((img, index) => {
+          const position = POLAROID_POSITIONS[index];
+          const delay = index * 0.1;
+
+          return (
+            <div
+              key={`polaroid-${index}`}
+              className="absolute polaroid-photo"
+              style={{
+                left: position.left,
+                top: position.top,
+                '--rotation': `${position.rotate}deg`,
+                animationDelay: `${delay}s`
+              } as React.CSSProperties & { '--rotation': string }}
+            >
+              <div className="bg-white p-3 shadow-2xl">
+                <img
+                  src={img}
+                  alt={`Adventure memory ${index + 1}`}
+                  className="w-44 h-36 md:w-52 md:h-44 object-cover"
+                  loading="eager"
+                />
+                <div className="h-8 md:h-10" />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}, (prevProps, nextProps) => {
+  const prevOpacity = prevProps.scrollY < 400 ? 0 : Math.min(1, (prevProps.scrollY - 400) / 200);
+  const nextOpacity = nextProps.scrollY < 400 ? 0 : Math.min(1, (nextProps.scrollY - 400) / 200);
+  return Math.abs(prevOpacity - nextOpacity) < 0.1;
+});
+
+PolaroidGallery.displayName = 'PolaroidGallery';
 
 export default function TourGuideSite() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -124,43 +232,7 @@ export default function TourGuideSite() {
     },
   ];
 
-  const galleryImages = [
-    '/assets/WhatsApp Image 2025-09-18 at 08.05.08.jpeg',
-    '/assets/WhatsApp Image 2025-09-18 at 08.05.08(1).jpeg',
-    '/assets/WhatsApp Image 2025-09-18 at 08.05.09.jpeg',
-    '/assets/WhatsApp Image 2025-09-18 at 08.07.44.jpeg',
-    '/assets/WhatsApp Image 2025-09-18 at 08.08.55.jpeg',
-    '/assets/WhatsApp Image 2025-09-18 at 08.08.56.jpeg',
-    '/assets/WhatsApp Image 2025-09-18 at 08.08.56(1).jpeg',
-    '/assets/IMG-20250918-WA0001.jpg',
-    '/assets/IMG-20250918-WA0004.jpg',
-    '/assets/IMG-20250918-WA0005.jpg',
-    '/assets/IMG-20250918-WA0006.jpg',
-    '/assets/IMG-20250918-WA0007.jpg',
-    '/assets/IMG-20250918-WA0008.jpg',
-    '/assets/IMG-20250918-WA0009.jpg',
-    '/assets/IMG-20250918-WA0010.jpg',
-    '/assets/IMG-20250918-WA0011.jpg',
-    '/assets/IMG-20250918-WA0012.jpg',
-    '/assets/IMG-20250918-WA0013.jpg',
-    '/assets/IMG-20250918-WA0014.jpg',
-    '/assets/IMG-20250918-WA0015.jpg',
-    '/assets/IMG-20250918-WA0016.jpg',
-    '/assets/IMG-20250918-WA0017.jpg',
-    '/assets/IMG-20250918-WA0018.jpg',
-    '/assets/IMG-20250918-WA0019.jpg',
-    '/assets/IMG-20250918-WA0020.jpg',
-    '/assets/IMG-20250918-WA0021.jpg',
-    '/assets/IMG-20250918-WA0022.jpg',
-    '/assets/IMG-20250918-WA0023.jpg',
-    '/assets/IMG-20250918-WA0024.jpg',
-    '/assets/IMG-20250918-WA0025.jpg',
-    '/assets/IMG-20250918-WA0026.jpg',
-    '/assets/IMG-20250918-WA0027.jpg',
-    '/assets/IMG-20250918-WA0028.jpg',
-    '/assets/IMG-20250918-WA0029.jpg',
-    '/assets/IMG-20250918-WA0030.jpg',
-  ];
+  const galleryImages = GALLERY_IMAGES;
 
   const navItems = [
     { label: 'Home', page: 'home' },
@@ -317,8 +389,9 @@ export default function TourGuideSite() {
         </div>
 
         {/* Description Section - Appears after scroll */}
-        <div className="max-w-3xl mx-auto pb-32">
+        <div className="max-w-3xl mx-auto pb-32 relative z-20 px-4">
           <div
+            className="text-center md:text-left bg-stone-900/80 backdrop-blur-sm p-8 rounded-lg"
             style={{
               opacity: Math.max(0, Math.min(1, (scrollY - 1) / 50)),
             }}
@@ -399,30 +472,46 @@ export default function TourGuideSite() {
       <div className="absolute inset-0 bg-gradient-to-b via-stone-900/50 to-emerald-950/40" />
 
       <div className="relative z-10 pt-40 px-4 pb-12">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h1 className="text-5xl font-bold mb-8 text-emerald-700 drop-shadow-lg">About Tyson</h1>
 
-          <div className="space-y-6 text-stone-200 leading-relaxed">
-            <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30">
+          {/* First paragraph - full width */}
+          <div className="mb-6">
+            <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30 text-stone-200 leading-relaxed">
               Tyson Stillman was born and raised on the Yellowstone River in Livingston, Montana. Throughout his childhood, he discovered a love for the rich history and flora and fauna surrounding him!
             </p>
+          </div>
 
-            <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30">
-              Those formative hobbies transpired into an education at MSU. Tyson acquired a degree in sustainable agriculture and Native American studies. His thirst for knowledge led him to further his studies, learning the ins and outs of the nursery business and arboreal work, a fascination with mycology leading to the building of a mushroom facility on the farm, and taking his agricultural degree to the next level by growing a large and bountiful garden to feed his community.
-            </p>
+          {/* Image and text side by side on larger screens */}
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            {/* Tyson's Photo */}
+            <div className="bg-stone-900/60 backdrop-blur-sm p-4 rounded-lg border border-emerald-950/30">
+              <img
+                src="/assets/IMG-20250918-WA0018.jpg"
+                alt="Tyson on an adventure"
+                className="w-full h-auto rounded-lg shadow-lg object-cover"
+              />
+            </div>
 
-            <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30">
-               Tyson runs{' '}
-               <a
-                 href="https://www.shieldsriverfarm.com/"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="text-emerald-700 hover:text-emerald-600 underline decoration-emerald-700/50 hover:decoration-emerald-600 transition-colors"
-               >
-                 Shield River Farm and Nursery
-               </a>
-               {' '}with his amazing wife, Jessica. Together they have carved out a little slice of paradise ready to share with all you adventurers out there!
-            </p>
+            {/* Second and third paragraphs alongside image */}
+            <div className="flex flex-col gap-6">
+              <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30 text-stone-200 leading-relaxed">
+                Those formative hobbies transpired into an education at MSU. Tyson acquired a degree in sustainable agriculture and Native American studies. His thirst for knowledge led him to further his studies, learning the ins and outs of the nursery business and arboreal work, a fascination with mycology leading to the building of a mushroom facility on the farm, and taking his agricultural degree to the next level by growing a large and bountiful garden to feed his community.
+              </p>
+
+              <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30 text-stone-200 leading-relaxed">
+                 Tyson runs{' '}
+                 <a
+                   href="https://www.shieldsriverfarm.com/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="text-emerald-700 hover:text-emerald-600 underline decoration-emerald-700/50 hover:decoration-emerald-600 transition-colors"
+                 >
+                   Shield River Farm and Nursery
+                 </a>
+                 {' '}with his amazing wife, Jessica. Together they have carved out a little slice of paradise ready to share with all you adventurers out there!
+              </p>
+            </div>
           </div>
 
           {/* Email Footer */}
@@ -1090,7 +1179,13 @@ export default function TourGuideSite() {
 
         <Navigation />
 
-        {currentPage === 'home' && <HomePage />}
+        {currentPage === 'home' && (
+          <div className="relative">
+            {/* Polaroid Gallery - Rendered outside HomePage to prevent re-renders */}
+            <PolaroidGallery scrollY={scrollY} />
+            <HomePage />
+          </div>
+        )}
         {currentPage === 'about' && <AboutPage />}
         {currentPage === 'packages' && PackagesPage}
         {currentPage === 'gallery' && <GalleryPage />}
