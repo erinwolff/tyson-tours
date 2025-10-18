@@ -322,7 +322,7 @@ export default function TourGuideSite() {
             <p className="text-lg md:text-xl text-stone-200 leading-relaxed mb-6">
               Perfect for birthday parties, bar mitzvahs, corporate events, sorority/fraternity rush week, wedding receptions, nights out with the homies, or any other event!
             </p>
-            <p className="text-lg md:text-xl text-stone-400">
+            <p className="text-lg md:text-xl text-stone-200 leading-relaxed mb-6">
               Tyson and Jessica Stillman know no stranger, so be prepared for new friends for life!
             </p>
           </div>
