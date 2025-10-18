@@ -1,10 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Menu, X, ChevronDown, Clock, Users, Mail } from 'lucide-react';
 
 export default function TourGuideSite() {
   const [currentPage, setCurrentPage] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [liabilityName, setLiabilityName] = useState('');
+  const [liabilityAgreed, setLiabilityAgreed] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [submittedName, setSubmittedName] = useState('');
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -213,10 +217,12 @@ export default function TourGuideSite() {
         {/* Description */}
         <div className="max-w-3xl mx-auto mb-20">
           <p className="text-lg text-gray-300 leading-relaxed mb-6">
-            Experience the raw power and quiet beauty of untamed nature. With over a decade of expertise, we craft personalized journeys through pristine landscapes—from misty forest floors teeming with rare mushrooms to windswept mountain peaks where the soul finds silence.
+            Here at Tyson Tours we aim to provide you with a silly and educational experience! Our award winning tours can be shaped and molded into the adventure of a lifetime. 
+
+            Perfect for birthday parties, bar mitzvah, corporate events, sorority/fraternity rush week, wedding receptions, night out with the homies, or any other event!
           </p>
           <p className="text-lg text-gray-400">
-            Whether you seek adventure, meditation, or discovery, our tours are designed for those who hear the call of the wild.
+            Tyson and Jessica Stillman know no stranger, so be prepared for new friends for life!
           </p>
         </div>
       </div>
@@ -227,7 +233,7 @@ export default function TourGuideSite() {
           <h2 className="text-4xl font-bold text-center mb-16 text-yellow-500">
             What People Say
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             {testimonials.map((testimonial, idx) => (
               <div
                 key={idx}
@@ -246,12 +252,23 @@ export default function TourGuideSite() {
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-4">
           <p className="text-gray-400">Questions? Get in touch:</p>
           <a
-            href="mailto:contact@trailguide.com"
+            href="mailto:tysontours.contact@gmail.com"
             className="flex items-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
           >
             <Mail size={20} />
-            contact@trailguide.com
+            tysontours.contact@gmail.com
           </a>
+          <p className="text-gray-500 text-xs mt-4">
+            Made by{' '}
+            <a
+              href="https://github.com/erinwolff"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-yellow-500 transition-colors"
+            >
+              Erin Wolff
+            </a>
+          </p>
         </div>
       </div>
     </div>
@@ -291,6 +308,17 @@ export default function TourGuideSite() {
             <Mail size={20} />
             contact@trailguide.com
           </a>
+          <p className="text-gray-500 text-xs mt-4 text-center">
+            Made by{' '}
+            <a
+              href="https://github.com/erinwolff"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-yellow-500 transition-colors"
+            >
+              Erin Wolff
+            </a>
+          </p>
         </div>
       </div>
     </div>
@@ -345,6 +373,17 @@ export default function TourGuideSite() {
             <Mail size={20} />
             contact@trailguide.com
           </a>
+          <p className="text-gray-500 text-xs mt-4 text-center">
+            Made by{' '}
+            <a
+              href="https://github.com/erinwolff"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-yellow-500 transition-colors"
+            >
+              Erin Wolff
+            </a>
+          </p>
         </div>
       </div>
     </div>
@@ -375,68 +414,184 @@ export default function TourGuideSite() {
             <Mail size={20} />
             contact@trailguide.com
           </a>
+          <p className="text-gray-500 text-xs mt-4 text-center">
+            Made by{' '}
+            <a
+              href="https://github.com/erinwolff"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-yellow-500 transition-colors"
+            >
+              Erin Wolff
+            </a>
+          </p>
         </div>
       </div>
     </div>
   );
 
   // Liability Page
-  const LiabilityPage = () => (
-    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-bold mb-8 text-yellow-500">Liability & Safety</h1>
+  const LiabilityPage = useMemo(() => {
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      if (liabilityName && liabilityAgreed) {
+        setSubmittedName(liabilityName);
+        setShowSuccess(true);
+        setLiabilityName('');
+        setLiabilityAgreed(false);
 
-        <div className="space-y-6 text-gray-300 leading-relaxed bg-stone-800/30 border border-yellow-900/20 rounded-lg p-8">
-          <section>
-            <h2 className="text-2xl font-bold text-yellow-500 mb-3">Assumption of Risk</h2>
-            <p>
-              Outdoor activities involve inherent risks including but not limited to: falls, exposure to extreme weather, wildlife encounters, and physical exertion. Participants acknowledge these risks and engage in activities voluntarily.
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 5000);
+      }
+    };
+
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl font-bold mb-8 text-yellow-500">Liability Waiver</h1>
+
+          {/* Success Modal */}
+          {showSuccess && (
+            <>
+              {/* Backdrop */}
+              <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                {/* Modal */}
+                <div className="bg-gradient-to-br from-green-900 to-emerald-900 border-2 border-green-500 rounded-lg p-8 max-w-md w-full shadow-2xl shadow-green-500/50 animate-scale-in">
+                  <div className="text-center">
+                    <div className="mb-4 text-green-400 text-6xl">✓</div>
+                    <h3 className="text-3xl font-bold text-green-400 mb-4">Waiver Signed!</h3>
+                    <p className="text-gray-200 text-lg mb-2">
+                      Thanks <span className="text-yellow-400 font-semibold">{submittedName}</span>!
+                    </p>
+                    <p className="text-gray-300">
+                      Your liability waiver has been acknowledged. We'll see you on the trail!
+                    </p>
+                    <button
+                      onClick={() => setShowSuccess(false)}
+                      className="mt-6 px-6 py-2 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded transition-colors"
+                    >
+                      Awesome!
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+
+          <div className="space-y-8">
+            {/* Introduction */}
+            <div className="bg-stone-800/30 border border-yellow-900/20 rounded-lg p-8">
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Look, we're gonna have a great time, but let's be real about what you're signing up for. This isn't your average corporate tour company with lawyers and insurance out the wazoo. This is Tyson Tours—raw, authentic, and a little rough around the edges.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                Read the waiver below and sign if you're ready to roll.
+              </p>
+            </div>
+
+            {/* Liability Form */}
+            <form onSubmit={handleSubmit} className="bg-gradient-to-br from-stone-800 to-stone-900 border border-yellow-900/30 rounded-lg p-8">
+              <h2 className="text-2xl font-bold text-yellow-500 mb-6">Official Waiver</h2>
+
+              <div className="space-y-6 text-gray-300 leading-relaxed mb-8">
+                <p>
+                  I{' '}
+                  <input
+                    type="text"
+                    value={liabilityName}
+                    onChange={(e) => setLiabilityName(e.target.value)}
+                    placeholder="(Your Full Name)"
+                    className="inline-block mx-2 px-3 py-1 bg-stone-700 border border-yellow-900/50 rounded text-yellow-400 placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 min-w-[200px]"
+                    required
+                  />{' '}
+                  understand that Tyson Tours LLC is not responsible for any harm that becomes me during our time together.
+                </p>
+
+                <p>
+                  I accept that Tyson will be smoking and drinking and will provide those for him based on the experience.
+                </p>
+
+                <p>
+                  I will wear the appropriate attire for the package chosen.
+                </p>
+
+                <p>
+                  I understand that Tyson is diabetic and will need to eat regularly.
+                </p>
+              </div>
+
+              <div className="border-t border-yellow-900/30 pt-6">
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    checked={liabilityAgreed}
+                    onChange={(e) => setLiabilityAgreed(e.target.checked)}
+                    className="mt-1 w-5 h-5 bg-stone-700 border-yellow-900/50 rounded text-yellow-500 focus:ring-yellow-500 focus:ring-2"
+                    required
+                  />
+                  <span className="text-gray-300 group-hover:text-yellow-500 transition-colors">
+                    I have read and agree to the terms stated above. I understand the risks and am ready to have an unforgettable time with Tyson Tours.
+                  </span>
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                disabled={!liabilityName || !liabilityAgreed}
+                className="mt-8 w-full bg-gradient-to-r from-yellow-700 to-green-700 hover:from-yellow-600 hover:to-green-600 disabled:from-stone-700 disabled:to-stone-700 disabled:cursor-not-allowed text-white font-bold py-3 rounded transition-all"
+              >
+                Sign Waiver & Let's Go!
+              </button>
+            </form>
+
+            {/* Additional Info */}
+            <div className="bg-stone-800/30 border border-yellow-900/20 rounded-lg p-8">
+              <h2 className="text-2xl font-bold text-yellow-500 mb-4">The Real Deal</h2>
+              <div className="space-y-4 text-gray-300 leading-relaxed">
+                <p>
+                  <strong className="text-yellow-400">Safety First (ish):</strong> We take your safety seriously, but nature is unpredictable. You might encounter wildlife, rough terrain, weather changes, or Tyson's questionable trail jokes.
+                </p>
+                <p>
+                  <strong className="text-yellow-400">Come Prepared:</strong> Bring proper footwear, water, snacks (for you AND Tyson), and a sense of adventure. Check your package details for specific gear requirements.
+                </p>
+                <p>
+                  <strong className="text-yellow-400">Health Considerations:</strong> These tours involve physical activity. Know your limits. If you have medical conditions, bring what you need and let Tyson know.
+                </p>
+                <p>
+                  <strong className="text-yellow-400">The Tyson Experience:</strong> This is unfiltered wilderness exploration with a guide who keeps it real. Expect honest commentary, occasional smoke breaks, and genuine passion for the outdoors.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Email Footer */}
+          <div className="mt-16 border-t border-yellow-900/30 pt-8">
+            <p className="text-gray-400 text-center mb-4">Questions about the waiver? Hit us up:</p>
+            <a
+              href="mailto:contact@trailguide.com"
+              className="flex items-center justify-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
+            >
+              <Mail size={20} />
+              contact@trailguide.com
+            </a>
+            <p className="text-gray-500 text-xs mt-4 text-center">
+              Made by{' '}
+              <a
+                href="https://github.com/erinwolff"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-yellow-500 transition-colors"
+              >
+                Erin Wolff
+              </a>
             </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-yellow-500 mb-3">Participant Responsibility</h2>
-            <p>
-              All participants must be in adequate physical condition for the chosen tour. We recommend consulting with a healthcare provider before participating. Participants are responsible for disclosing any medical conditions or physical limitations.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-yellow-500 mb-3">Waiver of Liability</h2>
-            <p>
-              By booking a tour, participants agree to release, indemnify, and hold harmless our company and guides from any claims, damages, or liability arising from participation in guided tours.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-yellow-500 mb-3">Safety Guidelines</h2>
-            <p>
-              Participants must follow all safety instructions provided by guides. We reserve the right to terminate tours if participant behavior endangers themselves or others. Weather conditions may necessitate tour cancellation or modification.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-yellow-500 mb-3">Equipment & Gear</h2>
-            <p>
-              Participants are responsible for bringing appropriate gear including proper footwear, weather protection, and hydration. We provide guidance on recommended equipment for each tour.
-            </p>
-          </section>
-        </div>
-
-        {/* Email Footer */}
-        <div className="mt-16 border-t border-yellow-900/30 pt-8">
-          <p className="text-gray-400 text-center mb-4">Questions about safety? Contact us:</p>
-          <a
-            href="mailto:contact@trailguide.com"
-            className="flex items-center justify-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
-          >
-            <Mail size={20} />
-            contact@trailguide.com
-          </a>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }, [liabilityName, liabilityAgreed, showSuccess, submittedName]);
 
   return (
     <div className="bg-stone-900 text-white overflow-x-hidden">
@@ -446,7 +601,7 @@ export default function TourGuideSite() {
       {currentPage === 'about' && <AboutPage />}
       {currentPage === 'packages' && <PackagesPage />}
       {currentPage === 'gallery' && <GalleryPage />}
-      {currentPage === 'liability' && <LiabilityPage />}
+      {currentPage === 'liability' && LiabilityPage}
     </div>
   );
 }
