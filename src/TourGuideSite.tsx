@@ -12,6 +12,13 @@ export default function TourGuideSite() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isNavigating, setIsNavigating] = useState(false);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<any>(null);
+  const [bookingName, setBookingName] = useState('');
+  const [bookingEmail, setBookingEmail] = useState('');
+  const [bookingDate, setBookingDate] = useState('');
+  const [bookingNotes, setBookingNotes] = useState('');
+  const [bookingSuccess, setBookingSuccess] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -379,92 +386,228 @@ export default function TourGuideSite() {
   );
 
   // Packages Page
-  const PackagesPage = () => (
-    <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-5xl font-bold mb-6 text-yellow-500">Our Packages</h1>
-        <p className="text-gray-400 mb-4 text-lg">
-          These are some of our packages which are subject to change based on the needs/wants of the group.
-        </p>
-        <p className="text-gray-400 mb-12 text-base">
-          All parties are required to provide Tyson with beers and marijuana; longer trips will require at least one meal and copious snacks. All experiences are non-negotiably dog friendly—must love dogs to join. A liability waiver must be signed to participate.
-        </p>
+  const PackagesPage = useMemo(() => {
+    const openBookingModal = (pkg: any) => {
+      setSelectedPackage(pkg);
+      setBookingModalOpen(true);
+      setBookingSuccess(false);
+    };
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {packages.map((pkg, idx) => (
-            <div
-              key={idx}
-              className="bg-gradient-to-br from-stone-800 to-stone-900 border border-yellow-900/30 rounded-lg p-6 hover:border-yellow-900/60 transition-colors group flex flex-col"
-            >
-              <div className="flex justify-between items-start mb-3">
-                <h2 className="text-2xl font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors">
-                  {pkg.title}
-                </h2>
-                <span className="text-3xl font-bold text-green-400">{pkg.price}</span>
-              </div>
+    const closeBookingModal = () => {
+      setBookingModalOpen(false);
+      setBookingName('');
+      setBookingEmail('');
+      setBookingDate('');
+      setBookingNotes('');
+      setBookingSuccess(false);
+    };
 
-              <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-400">
-                <div className="flex items-center gap-2">
-                  <Clock size={16} className="text-yellow-600" />
-                  {pkg.duration}
+    const handleBookingSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      setBookingSuccess(true);
+      setTimeout(() => {
+        closeBookingModal();
+      }, 7000);
+    };
+
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
+        <div className="max-w-5xl mx-auto">
+          <h1 className="text-5xl font-bold mb-6 text-yellow-500">Our Packages</h1>
+          <p className="text-gray-400 mb-4 text-lg">
+            These are some of our packages which are subject to change based on the needs/wants of the group.
+          </p>
+          <p className="text-gray-400 mb-12 text-base">
+            All parties are required to provide Tyson with beers and marijuana; longer trips will require at least one meal and copious snacks. All experiences are non-negotiably dog friendly—must love dogs to join. A liability waiver must be signed to participate.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {packages.map((pkg, idx) => (
+              <div
+                key={idx}
+                className="bg-gradient-to-br from-stone-800 to-stone-900 border border-yellow-900/30 rounded-lg p-6 hover:border-yellow-900/60 transition-colors group flex flex-col"
+              >
+                <div className="flex justify-between items-start mb-3">
+                  <h2 className="text-2xl font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors">
+                    {pkg.title}
+                  </h2>
+                  <span className="text-3xl font-bold text-green-400">{pkg.price}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Users size={16} className="text-yellow-600" />
-                  {pkg.age}
+
+                <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-400">
+                  <div className="flex items-center gap-2">
+                    <Clock size={16} className="text-yellow-600" />
+                    {pkg.duration}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users size={16} className="text-yellow-600" />
+                    {pkg.age}
+                  </div>
                 </div>
-              </div>
 
-              {pkg.upgrade && (
-                <p className="text-yellow-400 text-sm mb-3 italic">
-                  {pkg.upgrade}
-                </p>
-              )}
-
-              <p className="text-gray-300 leading-relaxed mb-4">{pkg.description}</p>
-
-              <div className="mt-auto space-y-2">
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {pkg.requirements}
-                </p>
-                {pkg.qualifier && (
-                  <p className="text-yellow-400 text-sm leading-relaxed">
-                    {pkg.qualifier}
+                {pkg.upgrade && (
+                  <p className="text-yellow-400 text-sm mb-3 italic">
+                    {pkg.upgrade}
                   </p>
                 )}
+
+                <p className="text-gray-300 leading-relaxed mb-4">{pkg.description}</p>
+
+                <div className="mt-auto space-y-2">
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {pkg.requirements}
+                  </p>
+                  {pkg.qualifier && (
+                    <p className="text-yellow-400 text-sm leading-relaxed">
+                      {pkg.qualifier}
+                    </p>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => openBookingModal(pkg)}
+                  className="mt-6 w-full bg-gradient-to-r from-yellow-700 to-green-700 hover:from-yellow-600 hover:to-green-600 text-white font-bold py-2 rounded transition-all"
+                >
+                  Book Tour
+                </button>
               </div>
+            ))}
+          </div>
 
-              <button className="mt-6 w-full bg-gradient-to-r from-yellow-700 to-green-700 hover:from-yellow-600 hover:to-green-600 text-white font-bold py-2 rounded transition-all">
-                Book Tour
-              </button>
+          {/* Booking Modal */}
+          {bookingModalOpen && selectedPackage && (
+            <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+              <div className="bg-gradient-to-br from-stone-900 to-stone-800 border-2 border-yellow-900/50 rounded-lg p-8 max-w-lg w-full shadow-2xl shadow-yellow-900/50 max-h-[90vh] overflow-y-auto">
+                {!bookingSuccess ? (
+                  <>
+                    <div className="flex justify-between items-start mb-6">
+                      <div>
+                        <h3 className="text-3xl font-bold text-yellow-500 mb-2">Book Your Tour</h3>
+                        <p className="text-xl text-gray-300">{selectedPackage.title}</p>
+                      </div>
+                      <button
+                        onClick={closeBookingModal}
+                        className="text-gray-400 hover:text-yellow-500 transition-colors"
+                        aria-label="Close modal"
+                      >
+                        <X size={28} />
+                      </button>
+                    </div>
+
+                    <form onSubmit={handleBookingSubmit} className="space-y-4">
+                      <div>
+                        <label className="block text-gray-300 mb-2 font-semibold">Name *</label>
+                        <input
+                          type="text"
+                          value={bookingName}
+                          onChange={(e) => setBookingName(e.target.value)}
+                          required
+                          className="w-full px-4 py-2 bg-stone-700 border border-yellow-900/50 rounded text-gray-200 placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/50"
+                          placeholder="Your full name"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-gray-300 mb-2 font-semibold">Email *</label>
+                        <input
+                          type="email"
+                          value={bookingEmail}
+                          onChange={(e) => setBookingEmail(e.target.value)}
+                          required
+                          className="w-full px-4 py-2 bg-stone-700 border border-yellow-900/50 rounded text-gray-200 placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/50"
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-gray-300 mb-2 font-semibold">Preferred Date *</label>
+                        <input
+                          type="date"
+                          value={bookingDate}
+                          onChange={(e) => setBookingDate(e.target.value)}
+                          required
+                          className="w-full px-4 py-2 bg-stone-700 border border-yellow-900/50 rounded text-gray-200 focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/50"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-gray-300 mb-2 font-semibold">Special Requests / Notes</label>
+                        <textarea
+                          value={bookingNotes}
+                          onChange={(e) => setBookingNotes(e.target.value)}
+                          rows={4}
+                          className="w-full px-4 py-2 bg-stone-700 border border-yellow-900/50 rounded text-gray-200 placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/50 resize-none"
+                          placeholder="Any special requests, group size, dietary restrictions, etc."
+                        />
+                      </div>
+
+                      <div className="bg-yellow-900/20 border border-yellow-900/50 rounded-lg p-4 mt-6">
+                        <p className="text-yellow-400 text-sm font-semibold mb-2">Remember to bring:</p>
+                        <p className="text-gray-300 text-sm">{selectedPackage.requirements}</p>
+                      </div>
+
+                      <div className="flex gap-4 mt-6">
+                        <button
+                          type="button"
+                          onClick={closeBookingModal}
+                          className="flex-1 px-6 py-3 bg-stone-700 hover:bg-stone-600 text-white font-bold rounded transition-colors"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="submit"
+                          className="flex-1 px-6 py-3 bg-gradient-to-r from-yellow-700 to-green-700 hover:from-yellow-600 hover:to-green-600 text-white font-bold rounded transition-all"
+                        >
+                          Submit Booking
+                        </button>
+                      </div>
+                    </form>
+                  </>
+                ) : (
+                  <div className="text-center py-8">
+                    <div className="mb-4 text-green-400 text-6xl">✓</div>
+                    <h3 className="text-3xl font-bold text-green-400 mb-4">Booking Submitted!</h3>
+                    <p className="text-gray-200 text-lg mb-2">
+                      Thanks <span className="text-yellow-400 font-semibold">{bookingName}</span>!
+                    </p>
+                    <p className="text-gray-300">
+                      We'll reach out to you at <span className="text-yellow-400">{bookingEmail}</span> to confirm your {selectedPackage.title} adventure!
+                    </p>
+                    <p className="text-gray-400 text-sm mt-4">
+                      Don't forget to sign the liability waiver before your tour!
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
-          ))}
-        </div>
+          )}
 
-        {/* Email Footer */}
-        <div className="mt-16 border-t border-yellow-900/30 pt-8">
-          <p className="text-gray-400 text-center mb-4">Ready to explore? Contact us:</p>
-          <a
-            href="mailto:tysontours.contact@gmail.com"
-            className="flex items-center justify-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
-          >
-            <Mail size={20} />
-            tysontours.contact@gmail.com
-          </a>
-          <p className="text-gray-500 text-xs mt-4 text-center">
-            Made by{' '}
+          {/* Email Footer */}
+          <div className="mt-16 border-t border-yellow-900/30 pt-8">
+            <p className="text-gray-400 text-center mb-4">Ready to explore? Contact us:</p>
             <a
-              href="https://github.com/erinwolff"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-yellow-500 transition-colors"
+              href="mailto:tysontours.contact@gmail.com"
+              className="flex items-center justify-center gap-2 text-yellow-500 hover:text-yellow-400 font-semibold"
             >
-              Erin Wolff
+              <Mail size={20} />
+              tysontours.contact@gmail.com
             </a>
-          </p>
+            <p className="text-gray-500 text-xs mt-4 text-center">
+              Made by{' '}
+              <a
+                href="https://github.com/erinwolff"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-yellow-500 transition-colors"
+              >
+                Erin Wolff
+              </a>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }, [bookingModalOpen, selectedPackage, bookingSuccess, bookingName, bookingEmail, bookingDate, bookingNotes]);
 
   // Gallery Page
   const GalleryPage = () => {
@@ -794,7 +937,7 @@ export default function TourGuideSite() {
 
       {currentPage === 'home' && <HomePage />}
       {currentPage === 'about' && <AboutPage />}
-      {currentPage === 'packages' && <PackagesPage />}
+      {currentPage === 'packages' && PackagesPage}
       {currentPage === 'gallery' && <GalleryPage />}
       {currentPage === 'liability' && LiabilityPage}
     </div>
