@@ -951,7 +951,10 @@ export default function TourGuideSite() {
 
               {/* Previous Button - Desktop */}
               <button
-                onClick={prevImage}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevImage();
+                }}
                 className="hidden md:block absolute left-4 text-white hover:text-emerald-700 transition-colors z-[70] bg-stone-900/50 hover:bg-stone-800/50 rounded-full p-3"
                 aria-label="Previous image"
               >
@@ -960,7 +963,10 @@ export default function TourGuideSite() {
 
               {/* Next Button - Desktop */}
               <button
-                onClick={nextImage}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextImage();
+                }}
                 className="hidden md:block absolute right-4 text-white hover:text-emerald-700 transition-colors z-[70] bg-stone-900/50 hover:bg-stone-800/50 rounded-full p-3"
                 aria-label="Next image"
               >
