@@ -23,36 +23,56 @@ export default function TourGuideSite() {
 
   const packages = [
     {
-      title: 'Forest Explorer',
-      price: '$45',
-      duration: '2-3 hours',
-      group: '2-4 people',
+      title: 'Keiki Express',
+      price: '$75',
+      duration: '1-3 hours',
+      age: 'Kids aged 2-17',
       description:
-        'A guided walk through our local forests discovering ancient trees, rare mushroom species, and hidden woodland trails. Perfect for nature photographers and beginners.',
+        'An educational experience catered to kids aged 2-17. This package can be anything from rock hunting down the Yellowstone to playing down on the farm. Your kids will have a fun-filled time learning about nature!',
+      requirements: '* Guardians are still responsible for providing Tyson with a 6-pack of local beer and 1 locally grown joint',
+      qualifier: null,
     },
     {
-      title: 'Mountain Peak Adventure',
-      price: '$65',
-      duration: '4-5 hours',
-      group: '3-6 people',
+      title: 'Bozeman Bar Hopper',
+      price: '$150',
+      duration: 'One full day or night',
+      age: '21+',
       description:
-        'Challenge yourself on our most rewarding trail. Summit stunning peaks with 360-degree views, explore alpine ecosystems, and experience nature at its most majestic.',
+        'Spend a minimum 6 hours drinking and frolicking through the streets of Bozeman! Learn fun facts about Montana\'s rich history while throwing back beers and riding bikes from bar to bar. This is perfect for bachelorette/bachelor parties, birthdays, romping around with the boys, or general tomfoolery with a side of knowledge.',
+      requirements: '* Must provide Tyson with a 12-pack of local beer and 6 locally grown joints',
+      qualifier: '** Before the experience begins, participants must shotgun a beer and successfully ride a bike around the block to qualify',
+      upgrade: 'Can be upgraded to a 24 hr experience',
     },
     {
-      title: 'Midnight Forest Meditation',
-      price: '$55',
-      duration: '3 hours',
-      group: '2-5 people',
+      title: 'Day Tripper',
+      price: '$200',
+      duration: '1-2 days',
+      age: 'All ages',
       description:
-        'An immersive evening experience through twilight forests. Discover nocturnal wildlife, bioluminescent fungi, and the raw energy of nature after dark.',
+        'For those adventurers who love fishing, this one is for you! Spend a day or two floating down the Yellowstone River. Tyson will tell you about the endemic plants and animals of the Yellowstone all while having a rocking party. Options for making flies, processing the fish caught, or other endless opportunities available!',
+      requirements: '* Must provide Tyson with a minimum of 18 local beers, 2 locally grown joints, and 1 wax pen',
+      qualifier: '** Participants must drunkenly trial run on the boat before the initial experience to show no signs of seasickness',
     },
     {
-      title: 'Mushroom Foraging Masterclass',
-      price: '$50',
-      duration: '2-3 hours',
-      group: '2-4 people',
+      title: 'Crazy Mountains Camper',
+      price: '$125',
+      duration: '2-6 hours',
+      age: 'All ages',
       description:
-        'Learn the art of sustainable mushroom foraging from an expert. Identify edible species, understand ecosystems, and harvest responsibly in pristine wilderness.',
+        'Join Tyson and friends for a foraging extravaganza! Mushroom hunt through the Crazy Mountains while learning about the diversity of fungi found throughout western Montana. At the end of the trip, Tyson will show how to properly clean/store/cook all types of mushrooms found. Options for a mycological inoculation class available in conjunction with initial package.',
+      requirements: '* Must provide Tyson with 12 local beers and 4 locally grown joints',
+      qualifier: '** Participants must bong a beer then climb a tree successfully to join',
+      upgrade: 'Can be extended multiple days for most experienced hikers',
+    },
+    {
+      title: 'Wheel of Fortune',
+      price: '$???',
+      duration: '1-16 hours',
+      age: 'All ages',
+      description:
+        'Spin the wheel and let your conversations guide the day—(nearly) anything is possible! Put your day in the hands of the gods. Bring above-mentioned snacks, beers and provisions and clear your calendar. Let your curiosity be your guide!',
+      requirements: '* Provisions will be based on length of experience',
+      qualifier: null,
     },
   ];
 
@@ -362,33 +382,56 @@ export default function TourGuideSite() {
   const PackagesPage = () => (
     <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-5xl font-bold mb-16 text-yellow-500">Our Packages</h1>
+        <h1 className="text-5xl font-bold mb-6 text-yellow-500">Our Packages</h1>
+        <p className="text-gray-400 mb-4 text-lg">
+          These are some of our packages which are subject to change based on the needs/wants of the group.
+        </p>
+        <p className="text-gray-400 mb-12 text-base">
+          All parties are required to provide Tyson with beers and marijuana; longer trips will require at least one meal and copious snacks. All experiences are non-negotiably dog friendly—must love dogs to join. A liability waiver must be signed to participate.
+        </p>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {packages.map((pkg, idx) => (
             <div
               key={idx}
-              className="bg-gradient-to-br from-stone-800 to-stone-900 border border-yellow-900/30 rounded-lg p-8 hover:border-yellow-900/60 transition-colors group"
+              className="bg-gradient-to-br from-stone-800 to-stone-900 border border-yellow-900/30 rounded-lg p-6 hover:border-yellow-900/60 transition-colors group flex flex-col"
             >
-              <div className="flex justify-between items-start mb-4">
+              <div className="flex justify-between items-start mb-3">
                 <h2 className="text-2xl font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors">
                   {pkg.title}
                 </h2>
                 <span className="text-3xl font-bold text-green-400">{pkg.price}</span>
               </div>
 
-              <div className="flex gap-6 mb-6 text-sm text-gray-400">
+              <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-400">
                 <div className="flex items-center gap-2">
                   <Clock size={16} className="text-yellow-600" />
                   {pkg.duration}
                 </div>
                 <div className="flex items-center gap-2">
                   <Users size={16} className="text-yellow-600" />
-                  {pkg.group}
+                  {pkg.age}
                 </div>
               </div>
 
-              <p className="text-gray-300 leading-relaxed">{pkg.description}</p>
+              {pkg.upgrade && (
+                <p className="text-yellow-400 text-sm mb-3 italic">
+                  {pkg.upgrade}
+                </p>
+              )}
+
+              <p className="text-gray-300 leading-relaxed mb-4">{pkg.description}</p>
+
+              <div className="mt-auto space-y-2">
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {pkg.requirements}
+                </p>
+                {pkg.qualifier && (
+                  <p className="text-yellow-400 text-sm leading-relaxed">
+                    {pkg.qualifier}
+                  </p>
+                )}
+              </div>
 
               <button className="mt-6 w-full bg-gradient-to-r from-yellow-700 to-green-700 hover:from-yellow-600 hover:to-green-600 text-white font-bold py-2 rounded transition-all">
                 Book Tour
