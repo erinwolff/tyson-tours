@@ -973,14 +973,20 @@ export default function TourGuideSite() {
               {/* Mobile Navigation Buttons */}
               <div className="md:hidden absolute bottom-20 left-0 right-0 flex justify-center gap-4 z-[70]">
                 <button
-                  onClick={prevImage}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevImage();
+                  }}
                   className="bg-stone-900/80 backdrop-blur-sm text-white active:text-emerald-700 rounded-full p-4 active:scale-95 transition-all shadow-lg"
                   aria-label="Previous image"
                 >
                   <ChevronDown size={28} className="rotate-90" />
                 </button>
                 <button
-                  onClick={nextImage}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextImage();
+                  }}
                   className="bg-stone-900/80 backdrop-blur-sm text-white active:text-emerald-700 rounded-full p-4 active:scale-95 transition-all shadow-lg"
                   aria-label="Next image"
                 >
