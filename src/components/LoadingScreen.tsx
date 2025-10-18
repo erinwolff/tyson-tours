@@ -35,7 +35,7 @@ export function LoadingScreen({ onLoadComplete }: LoadingScreenProps) {
     >
       {/* Logo/Title */}
       <div className="mb-12">
-        <h1 className="text-6xl md:text-8xl font-bebas text-yellow-500 tracking-wider animate-pulse">
+        <h1 className="text-6xl md:text-8xl font-bebas text-emerald-500 tracking-wider animate-pulse">
           TYSON TOURS
         </h1>
         <p className="text-center text-gray-400 text-lg mt-2 tracking-widest">
@@ -47,12 +47,12 @@ export function LoadingScreen({ onLoadComplete }: LoadingScreenProps) {
       <div className="w-80 md:w-96">
         <div className="h-1 bg-stone-800 rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 transition-all duration-300 ease-out"
+            className="h-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 transition-all duration-300 ease-out"
             style={{ width: `${Math.min(progress, 100)}%` }}
           />
         </div>
         <div className="mt-2 text-center">
-          <span className="text-yellow-500 font-mono text-sm">
+          <span className="text-emerald-500 font-mono text-sm">
             {Math.floor(Math.min(progress, 100))}%
           </span>
         </div>
