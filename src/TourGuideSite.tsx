@@ -43,8 +43,8 @@ const GALLERY_IMAGES = [
 const POLAROID_ROTATIONS = [-8, 5, -3, 7, 4, -6, 3, -5];
 
 // Email Footer Component
-const EmailFooter = ({ message, className = "" }: { message?: string; className?: string }) => (
-  <div className={`${className}`}>
+const EmailFooter = ({ message }: { message?: string; className?: string }) => (
+  <div>
     {message && <p className="text-stone-400 text-center mb-4">{message}</p>}
     <a
       href="mailto:tysontours.contact@gmail.com"
@@ -795,7 +795,7 @@ export default function TourGuideSite() {
 
           {/* Email Footer */}
           <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
-            <EmailFooter message="Ready to explore? Contact us:" className="text-stone-200" />
+            <EmailFooter message="Ready to explore? Contact us:"/>
           </div>
           </div>
         </div>
@@ -852,9 +852,9 @@ export default function TourGuideSite() {
 
     return (
       <div className="min-h-screen relative overflow-hidden">
-        {/* Fixed Background */}
+        {/* Background */}
         <div
-          className="fixed inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url(/trees.jpg)',
             filter: 'brightness(0.4)',
@@ -1008,7 +1008,7 @@ export default function TourGuideSite() {
 
           {/* Email Footer */}
           <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
-            <EmailFooter message="Inspired? Let's plan your adventure:" className="text-stone-200" />
+            <EmailFooter message="Inspired? Let's plan your adventure:"/>
           </div>
           </div>
         </div>
