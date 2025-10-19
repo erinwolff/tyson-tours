@@ -462,8 +462,8 @@ export default function TourGuideSite() {
       </div>
 
       {/* Testimonials Section */}
-      <div className="bg-stone-800/50 border-t border-emerald-950/30 py-24 px-4">
-        <div className="max-w-6xl mx-auto">
+      <div className="pb-20 px-4">
+        <div className="max-w-6xl mx-auto bg-gradient-to-br from-stone-900/90 via-stone-800/80 to-emerald-950/60 backdrop-blur-md rounded-2xl border-2 border-emerald-900/40 shadow-2xl p-8 md:p-12">
           <h1 className="text-4xl font-bold text-center mb-16 text-emerald-700">
             What People Say
           </h1>
@@ -482,8 +482,10 @@ export default function TourGuideSite() {
       </div>
 
       {/* Email Footer */}
-      <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
-        <EmailFooter message="Questions? Get in touch:" />
+      <div className="px-4">
+        <div className="max-w-6xl mx-auto bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+          <EmailFooter message="Questions? Get in touch:" />
+        </div>
       </div>
     </div>
   );
