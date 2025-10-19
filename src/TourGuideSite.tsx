@@ -192,7 +192,7 @@ export default function TourGuideSite() {
       <nav className="nav-header">
         <div className="nav-container">
           <h1 className="logo-text"
-              onClick={(e) => {
+              onMouseDown={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 navigateToPage('home');
@@ -205,7 +205,7 @@ export default function TourGuideSite() {
             {navItems.map((item) => (
               <button
                 key={item.page}
-                onClick={(e) => {
+                onMouseDown={(e) => {
                   e.preventDefault(); // Prevent any default behaviors
                   e.stopPropagation(); // Stop event propagation
                   navigateToPage(item.page);
