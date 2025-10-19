@@ -50,7 +50,7 @@ export const AboutPage = () => (
                  rel="noopener noreferrer"
                  className="text-emerald-700 hover:text-emerald-600 underline decoration-emerald-700/50 hover:decoration-emerald-600 transition-colors"
                >
-                 Shield River Farm and Nursery
+                 Shields River Farm and Nursery
                </a>
                {' '}with his amazing wife, Jessica. Together they have carved out a little slice of paradise ready to share with all you adventurers out there!
             </p>
