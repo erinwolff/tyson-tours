@@ -46,13 +46,15 @@ const POLAROID_ROTATIONS = [-8, 5, -3, 7, 4, -6, 3, -5];
 const EmailFooter = ({ message }: { message?: string; className?: string }) => (
   <div>
     {message && <p className="text-stone-400 text-center mb-4">{message}</p>}
-    <a
-      href="mailto:tysontours.contact@gmail.com"
-      className="flex items-center justify-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
-    >
-      <Mail size={20} />
-      tysontours.contact@gmail.com
-    </a>
+    <div className="flex items-center justify-center">
+      <a
+        href="mailto:tysontours.contact@gmail.com"
+        className="inline-flex items-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
+      >
+        <Mail size={20} />
+        tysontours.contact@gmail.com
+      </a>
+    </div>
     <p className="text-stone-500 text-xs mt-4 text-center">
       Made by{' '}
       <a
