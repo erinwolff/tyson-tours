@@ -121,7 +121,8 @@ export const GalleryPage = () => {
             >
               <div className="relative overflow-hidden rounded-lg md:rounded-xl shadow-lg border-2 border-transparent group-hover:border-emerald-500/50 group-hover:shadow-emerald-500/20 group-hover:shadow-2xl" style={{
                 WebkitTransform: 'translateZ(0)',
-                transform: 'translateZ(0)'
+                transform: 'translateZ(0)',
+                willChange: 'border-color'
               } as React.CSSProperties}>
                 <img
                   src={img}
