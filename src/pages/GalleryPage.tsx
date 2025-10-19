@@ -119,10 +119,11 @@ export const GalleryPage = () => {
                 WebkitColumnBreakInside: 'avoid'
               } as React.CSSProperties}
             >
-              <div className="relative overflow-hidden rounded-lg md:rounded-xl shadow-lg border-2 border-transparent group-hover:border-emerald-500/50 group-hover:shadow-emerald-500/20 group-hover:shadow-2xl" style={{
-                WebkitTransform: 'translateZ(0)',
-                transform: 'translateZ(0)',
-                willChange: 'border-color'
+              <div className="relative overflow-hidden rounded-lg md:rounded-xl shadow-lg" style={{
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                transform: 'translate3d(0, 0, 0)',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden'
               } as React.CSSProperties}>
                 <img
                   src={img}
@@ -139,7 +140,9 @@ export const GalleryPage = () => {
                     imageRendering: 'crisp-edges'
                   } as React.CSSProperties}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 flex items-end p-3 md:p-4 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 flex items-end p-3 md:p-4 pointer-events-none rounded-lg md:rounded-xl" style={{
+                  boxShadow: '0 0 0 2px rgba(16, 185, 129, 0.5), 0 25px 50px -12px rgba(16, 185, 129, 0.2)'
+                } as React.CSSProperties}>
                   <span className="text-white font-semibold text-xs md:text-sm">Tap to view</span>
                 </div>
                 {/* Mobile tap indicator */}
