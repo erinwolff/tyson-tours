@@ -372,7 +372,7 @@ export default function TourGuideSite() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Main title - always visible, moves up on scroll */}
             <h1
-              className="text-7xl md:text-9xl font-bebas text-emerald-700 tracking-wider drop-shadow-[0_0_30px_rgba(5,150,105,0.5)] mb-8"
+              className="text-7xl md:text-9xl text-emerald-700 tracking-wider drop-shadow-[0_0_30px_rgba(5,150,105,0.5)] mb-8"
               style={{
                 opacity: Math.max(0.4, 1 - scrollY / 600),
                 transform: `translateY(${scrollY * 0.5}px)`,
@@ -915,7 +915,10 @@ export default function TourGuideSite() {
                   WebkitColumnBreakInside: 'avoid'
                 } as React.CSSProperties}
               >
-                <div className="relative overflow-hidden rounded-lg md:rounded-xl shadow-lg border-2 border-transparent safari-gallery-item">
+                <div className="relative overflow-hidden rounded-lg md:rounded-xl shadow-lg border-2 border-transparent group-hover:border-emerald-500/50 group-hover:shadow-emerald-500/20 group-hover:shadow-2xl" style={{
+                  WebkitTransform: 'translateZ(0)',
+                  transform: 'translateZ(0)'
+                } as React.CSSProperties}>
                   <img
                     src={img}
                     alt={`Gallery image ${index + 1}`}
@@ -925,10 +928,13 @@ export default function TourGuideSite() {
                     style={{
                       display: 'block',
                       WebkitUserSelect: 'none',
-                      userSelect: 'none'
-                    }}
+                      userSelect: 'none',
+                      WebkitTransform: 'translateZ(0)',
+                      transform: 'translateZ(0)',
+                      imageRendering: 'crisp-edges'
+                    } as React.CSSProperties}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 flex items-end p-3 md:p-4 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 flex items-end p-3 md:p-4 pointer-events-none">
                     <span className="text-white font-semibold text-xs md:text-sm">Tap to view</span>
                   </div>
                   {/* Mobile tap indicator */}

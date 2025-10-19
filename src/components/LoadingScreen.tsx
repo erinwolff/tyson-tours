@@ -35,7 +35,7 @@ export function LoadingScreen({ onLoadComplete }: LoadingScreenProps) {
     >
       {/* Logo/Title */}
       <div className="mb-12">
-        <h1 className="text-6xl md:text-8xl font-bebas text-emerald-500 tracking-wider animate-pulse">
+        <h1 className="text-6xl md:text-8xl text-emerald-500 tracking-wider animate-pulse">
           TYSON TOURS
         </h1>
         <p className="text-center text-gray-400 text-lg mt-2 tracking-widest">
