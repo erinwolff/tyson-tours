@@ -159,10 +159,19 @@ export default function TourGuideSite() {
 
   const closeMenu = () => setMenuOpen(false);
 
-  // Reusable navigation function
+  // Reusable navigation function with improved reliability
   const navigateToPage = (page: string) => {
-    setCurrentPage(page);
-    window.scrollTo(0, 0);
+    // Only navigate if it's a different page to avoid unnecessary re-renders
+    if (currentPage !== page) {
+      setCurrentPage(page);
+      // Use requestAnimationFrame to ensure the scroll happens after the state update
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'auto' // Use 'auto' for immediate scrolling
+        });
+      });
+    }
   };
 
   const navItems = [
@@ -179,7 +188,11 @@ export default function TourGuideSite() {
       <nav className="nav-header">
         <div className="nav-container">
           <h1 className="logo-text"
-              onClick={() => navigateToPage('home')}>
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                navigateToPage('home');
+              }}>
             Tyson Tours
           </h1>
 
@@ -188,7 +201,11 @@ export default function TourGuideSite() {
             {navItems.map((item) => (
               <button
                 key={item.page}
-                onClick={() => navigateToPage(item.page)}
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent any default behaviors
+                  e.stopPropagation(); // Stop event propagation
+                  navigateToPage(item.page);
+                }}
                 className={`nav-link group ${
                   currentPage === item.page
                     ? 'nav-link-active'
@@ -248,9 +265,12 @@ export default function TourGuideSite() {
             {navItems.map((item, idx) => (
               <button
                 key={item.page}
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent any default behaviors
+                  e.stopPropagation(); // Stop event propagation
                   navigateToPage(item.page);
-                  closeMenu();
+                  // Close menu after a small delay to ensure navigation happens first
+                  setTimeout(() => closeMenu(), 50);
                 }}
                 className={`mobile-menu-item ${
                   currentPage === item.page

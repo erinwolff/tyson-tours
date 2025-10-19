@@ -19,7 +19,7 @@ export const PackagesPage = () => {
       age: 'Kids aged 2-17',
       description:
         'An educational experience catered to kids aged 2-17. This package can be anything from rock hunting down the Yellowstone to playing down on the farm. Your kids will have a fun-filled time learning about nature!',
-      requirements: '* Guardians are still responsible for providing Tyson with a 6-pack of local beer and 1 locally grown joint',
+      requirements: 'Guardians are still responsible for providing Tyson with a 6-pack of local beer and 1 locally grown joint',
       qualifier: null,
     },
     {
@@ -29,8 +29,8 @@ export const PackagesPage = () => {
       age: '21+',
       description:
         'Spend a minimum 6 hours drinking and frolicking through the streets of Bozeman! Learn fun facts about Montana\'s rich history while throwing back beers and riding bikes from bar to bar. This is perfect for bachelorette/bachelor parties, birthdays, romping around with the boys, or general tomfoolery with a side of knowledge.',
-      requirements: '* Must provide Tyson with a 12-pack of local beer and 6 locally grown joints',
-      qualifier: '** Before the experience begins, participants must shotgun a beer and successfully ride a bike around the block to qualify',
+      requirements: 'Must provide Tyson with a 12-pack of local beer and 6 locally grown joints',
+      qualifier: 'Before the experience begins, participants must shotgun a beer and successfully ride a bike around the block to qualify',
       upgrade: 'Can be upgraded to a 24 hr experience',
     },
     {
@@ -40,8 +40,8 @@ export const PackagesPage = () => {
       age: 'All ages',
       description:
         'For those adventurers who love fishing, this one is for you! Spend a day or two floating down the Yellowstone River. Tyson will tell you about the endemic plants and animals of the Yellowstone all while having a rocking party. Options for making flies, processing the fish caught, or other endless opportunities available!',
-      requirements: '* Must provide Tyson with a minimum of 18 local beers, 2 locally grown joints, and 1 wax pen',
-      qualifier: '** Participants must drunkenly trial run on the boat before the initial experience to show no signs of seasickness',
+      requirements: 'Must provide Tyson with a minimum of 18 local beers, 2 locally grown joints, and 1 wax pen',
+      qualifier: 'Participants must drunkenly trial run on the boat before the initial experience to show no signs of seasickness',
     },
     {
       title: 'Crazy Mountains Camper',
@@ -50,8 +50,8 @@ export const PackagesPage = () => {
       age: 'All ages',
       description:
         'Join Tyson and friends for a foraging extravaganza! Mushroom hunt through the Crazy Mountains while learning about the diversity of fungi found throughout western Montana. At the end of the trip, Tyson will show how to properly clean/store/cook all types of mushrooms found. Options for a mycological inoculation class available in conjunction with initial package.',
-      requirements: '* Must provide Tyson with 12 local beers and 4 locally grown joints',
-      qualifier: '** Participants must bong a beer then climb a tree successfully to join',
+      requirements: 'Must provide Tyson with 12 local beers and 4 locally grown joints',
+      qualifier: 'Participants must bong a beer then climb a tree successfully to join',
       upgrade: 'Can be extended multiple days for most experienced hikers',
     },
     {
@@ -61,7 +61,7 @@ export const PackagesPage = () => {
       age: 'All ages',
       description:
         'Spin the wheel and let your conversations guide the day—(nearly) anything is possible! Put your day in the hands of the gods. Bring above-mentioned snacks, beers and provisions and clear your calendar. Let your curiosity be your guide!',
-      requirements: '* Provisions will be based on length of experience',
+      requirements: 'Provisions will be based on length of experience',
       qualifier: null,
     },
   ];
