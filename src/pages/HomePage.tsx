@@ -122,7 +122,7 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
 
       {/* Email Footer */}
       <div className="px-4">
-        <div className="max-w-6xl mx-auto bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+        <div className="max-w-6xl mx-auto mb-10 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
           <EmailFooter message="Questions? Get in touch:" />
         </div>
       </div>
