@@ -124,6 +124,7 @@ export default function TourGuideSite() {
   const [scrollY, setScrollY] = useState(0);
   const [loading, setLoading] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
 
   useEffect(() => {
@@ -293,7 +294,7 @@ export default function TourGuideSite() {
           <Scene3D scrollProgress={scrollProgress} mousePosition={mousePosition} />
         )}
 
-        <Navigation />
+        {!lightboxOpen && <Navigation />}
 
         {currentPage === 'home' && (
           <div className="relative">
@@ -304,7 +305,7 @@ export default function TourGuideSite() {
         )}
         {currentPage === 'about' && <AboutPage />}
         {currentPage === 'packages' && <PackagesPage />}
-        {currentPage === 'gallery' && <GalleryPage />}
+        {currentPage === 'gallery' && <GalleryPage lightboxOpen={lightboxOpen} setLightboxOpen={setLightboxOpen} />}
         {currentPage === 'liability' && <LiabilityPage />}
       </div>
     </>

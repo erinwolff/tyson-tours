@@ -38,8 +38,12 @@ const GALLERY_IMAGES = [
   '/IMG-20250918-WA0030.jpg',
 ];
 
-export const GalleryPage = () => {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
+interface GalleryPageProps {
+  lightboxOpen: boolean;
+  setLightboxOpen: (open: boolean) => void;
+}
+
+export const GalleryPage = ({ lightboxOpen, setLightboxOpen }: GalleryPageProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isNavigating, setIsNavigating] = useState(false);
 
