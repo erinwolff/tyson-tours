@@ -127,6 +127,12 @@ export default function TourGuideSite() {
 
 
   useEffect(() => {
+    // Disable browser scroll restoration and force scroll to top on initial load
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     const handleScroll = () => setScrollY(window.scrollY);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
