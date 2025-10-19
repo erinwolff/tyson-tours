@@ -29,13 +29,13 @@ export function LoadingScreen({ onLoadComplete }: LoadingScreenProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-stone-950 transition-opacity duration-500 ${
+      className={`loading-container ${
         fadeOut ? 'opacity-0' : 'opacity-100'
       }`}
     >
       {/* Logo/Title */}
       <div className="mb-12">
-        <h1 className="text-6xl md:text-8xl text-emerald-500 tracking-wider animate-pulse">
+        <h1 className="loading-title">
           TYSON TOURS
         </h1>
         <p className="text-center text-gray-400 text-lg mt-2 tracking-widest">
@@ -45,9 +45,9 @@ export function LoadingScreen({ onLoadComplete }: LoadingScreenProps) {
 
       {/* Progress Bar */}
       <div className="w-80 md:w-96">
-        <div className="h-1 bg-stone-800 rounded-full overflow-hidden">
+        <div className="progress-bar-container">
           <div
-            className="h-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 transition-all duration-300 ease-out"
+            className="progress-bar"
             style={{ width: `${Math.min(progress, 100)}%` }}
           />
         </div>

@@ -24,25 +24,25 @@ export const LiabilityPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-900 to-emerald-950 pt-40 px-4 pb-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-bold mb-8 text-emerald-700">Liability Waiver</h1>
+      <div className="content-wrapper-sm">
+        <h1 className="page-title mb-8">Liability Waiver</h1>
 
         {/* Success Modal */}
         {showSuccess && (
           <>
             {/* Backdrop */}
             <div
-              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              className="modal-backdrop"
               onClick={() => setShowSuccess(false)}
             >
               {/* Modal */}
               <div
-                className="bg-gradient-to-br from-green-900 to-emerald-900 border-2 border-green-500 rounded-lg p-8 max-w-md w-full shadow-2xl shadow-green-500/50 animate-scale-in"
+                className="success-modal"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="text-center">
-                  <div className="mb-4 text-green-400 text-6xl">✓</div>
-                  <h3 className="text-3xl font-bold text-green-400 mb-4">Waiver Signed!</h3>
+                  <div className="success-icon">✓</div>
+                  <h3 className="success-title">Waiver Signed!</h3>
                   <p className="text-gray-200 text-lg mb-2">
                     Thanks <span className="text-emerald-600 font-semibold">{submittedName}</span>!
                   </p>
@@ -51,7 +51,7 @@ export const LiabilityPage = () => {
                   </p>
                   <button
                     onClick={() => setShowSuccess(false)}
-                    className="mt-6 px-6 py-2 bg-emerald-800 hover:bg-emerald-700 text-white font-bold rounded"
+                    className="mt-6 px-6 py-2 btn-submit w-auto"
                   >
                     Awesome!
                   </button>
@@ -84,7 +84,7 @@ export const LiabilityPage = () => {
                   value={liabilityName}
                   onChange={(e) => setLiabilityName(e.target.value)}
                   placeholder="(Your Full Name)"
-                  className="inline-block mx-2 px-3 py-1 bg-stone-700 border border-emerald-950/50 rounded text-emerald-600 placeholder-gray-500 focus:outline-none focus:border-emerald-700 focus:ring-1 focus:ring-emerald-700 min-w-[200px]"
+                  className="form-input-inline"
                   required
                 />{' '}
                 understand that Tyson Tours LLC is not responsible for any harm that becomes me during our time together.
@@ -121,7 +121,7 @@ export const LiabilityPage = () => {
             <button
               type="submit"
               disabled={!liabilityName || !liabilityAgreed}
-              className="mt-8 w-full bg-gradient-to-r from-emerald-800 to-green-700 hover:from-emerald-800 hover:to-green-600 disabled:from-stone-700 disabled:to-stone-700 disabled:cursor-not-allowed text-white font-bold py-3 rounded"
+              className="mt-8 btn-submit"
             >
               Sign Waiver & Let's Go!
             </button>
@@ -148,7 +148,7 @@ export const LiabilityPage = () => {
         </div>
 
         {/* Email Footer */}
-        <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+        <div className="footer-box">
           <EmailFooter message="Questions about the waiver? Hit us up:" />
         </div>
       </div>

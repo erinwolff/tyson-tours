@@ -176,9 +176,9 @@ export default function TourGuideSite() {
   // Navigation Component
   const Navigation = () => (
     <>
-      <nav className="bg-gradient-to-b from-stone-900 to-transparent py-6 px-4 md:px-6 absolute top-0 left-0 right-0 z-40">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-700 cursor-pointer"
+      <nav className="nav-header">
+        <div className="nav-container">
+          <h1 className="logo-text"
               onClick={() => navigateToPage('home')}>
             Tyson Tours
           </h1>
@@ -189,10 +189,10 @@ export default function TourGuideSite() {
               <button
                 key={item.page}
                 onClick={() => navigateToPage(item.page)}
-                className={`relative font-medium text-lg group ${
+                className={`nav-link group ${
                   currentPage === item.page
-                    ? 'text-emerald-600'
-                    : 'text-stone-300 hover:text-emerald-500'
+                    ? 'nav-link-active'
+                    : 'nav-link-inactive'
                 }`}
               >
                 {item.label}
@@ -224,8 +224,8 @@ export default function TourGuideSite() {
 
       {/* Slide-in Menu Panel */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-gradient-to-b from-stone-900 to-stone-800 border-l border-emerald-950/30 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`mobile-menu-panel ${
+          menuOpen ? '' : 'mobile-menu-panel-hidden'
         }`}
       >
         <div className="flex flex-col h-full">
@@ -252,10 +252,10 @@ export default function TourGuideSite() {
                   navigateToPage(item.page);
                   closeMenu();
                 }}
-                className={`text-left px-4 py-3 rounded-lg font-medium ${
+                className={`mobile-menu-item ${
                   currentPage === item.page
-                    ? 'text-emerald-700 bg-emerald-950/20 border border-emerald-950/50'
-                    : 'text-stone-200 hover:text-emerald-700 hover:bg-stone-700/50'
+                    ? 'mobile-menu-item-active'
+                    : 'mobile-menu-item-inactive'
                 }`}
                 style={{
                   animationDelay: `${idx * 50}ms`,

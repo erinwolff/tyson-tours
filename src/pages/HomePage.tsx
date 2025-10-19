@@ -33,7 +33,7 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
           <div className="max-w-4xl mx-auto text-center">
             {/* Main title - always visible, moves up on scroll */}
             <h1
-              className="text-7xl md:text-9xl text-emerald-700 tracking-wider drop-shadow-[0_0_30px_rgba(5,150,105,0.5)] mb-8"
+              className="hero-title"
               style={{
                 opacity: Math.max(0.4, 1 - scrollY / 600),
                 transform: `translateY(${scrollY * 0.5}px)`,
@@ -50,7 +50,7 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
                 transform: `translateY(${scrollY * 0.3}px)`,
               }}
             >
-              <p className="text-2xl md:text-3xl text-stone-300 font-light tracking-wide">
+              <p className="subtitle-lg">
                 Real adventures with real people
               </p>
             </div>
@@ -63,7 +63,7 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
                 transform: `translateY(${scrollY * 0.25}px)`,
               }}
             >
-              <p className="text-lg md:text-xl text-emerald-500/90 italic">
+              <p className="text-lg md:text-xl text-emerald-glow">
                 Where every trail tells a story
               </p>
             </div>
@@ -82,7 +82,7 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
         {/* Description Section - Appears after scroll */}
         <div className="max-w-3xl mx-auto pb-32 relative z-20 px-4 pt-120 sm:pt-150 md:pt-80 lg:pt-80 xl:pt-120">
           <div
-            className="text-center md:text-left bg-stone-900/80 backdrop-blur-sm p-6 sm:p-8 rounded-lg"
+            className="text-center md:text-left content-box-lg"
             style={{
               opacity: Math.max(0, Math.min(1, (scrollY - 1) / 50)),
             }}
@@ -110,7 +110,7 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
             {testimonials.map((testimonial, idx) => (
               <div
                 key={idx}
-                className="bg-stone-900/80 border border-emerald-950/20 rounded-lg p-6 hover:border-emerald-950/50 transition-colors"
+                className="testimonial-card"
               >
                 <p className="text-stone-200 mb-4 italic">"{testimonial.text}"</p>
                 <p className="text-emerald-700 font-semibold">— {testimonial.name}</p>
@@ -122,7 +122,7 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
 
       {/* Email Footer */}
       <div className="px-4">
-        <div className="max-w-6xl mx-auto mb-10 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+        <div className="content-wrapper-md mb-10 footer-box">
           <EmailFooter message="Questions? Get in touch:" />
         </div>
       </div>

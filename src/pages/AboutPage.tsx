@@ -1,10 +1,10 @@
 import { EmailFooter } from '../components/EmailFooter';
 
 export const AboutPage = () => (
-  <div className="min-h-screen relative overflow-hidden">
+  <div className="page-container">
     {/* Background */}
     <div
-      className="absolute inset-0 bg-cover bg-center"
+      className="bg-image-overlay"
       style={{
         backgroundImage: 'url(/forest.jpg)',
         filter: 'brightness(0.4)',
@@ -12,15 +12,15 @@ export const AboutPage = () => (
     />
 
     {/* Gradient Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-b via-stone-900/50 to-emerald-950/40" />
+    <div className="gradient-overlay-strong" />
 
-    <div className="relative z-10 pt-40 px-4 pb-12">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-5xl font-bold mb-8 text-emerald-700 drop-shadow-lg">About Tyson</h1>
+    <div className="page-content">
+      <div className="content-wrapper-md">
+        <h1 className="page-title mb-8">About Tyson</h1>
 
         {/* First paragraph - full width */}
         <div className="mb-6">
-          <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30 text-stone-200 leading-relaxed">
+          <p className="content-box text-lg">
             Tyson Stillman was born and raised on the Yellowstone River in Livingston, Montana. Throughout his childhood, he discovered a love for the rich history and flora and fauna surrounding him!
           </p>
         </div>
@@ -28,7 +28,7 @@ export const AboutPage = () => (
         {/* Image and text side by side on larger screens */}
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           {/* Tyson's Photo */}
-          <div className="bg-stone-900/60 backdrop-blur-sm p-4 rounded-lg border border-emerald-950/30">
+          <div className="content-box-sm">
             <img
               src="/IMG-20250918-WA0018.jpg"
               alt="Tyson on an adventure"
@@ -38,11 +38,11 @@ export const AboutPage = () => (
 
           {/* Second and third paragraphs alongside image */}
           <div className="flex flex-col gap-6">
-            <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30 text-stone-200 leading-relaxed">
+            <p className="content-box text-lg">
               Those formative hobbies transpired into an education at MSU. Tyson acquired a degree in sustainable agriculture and Native American studies. His thirst for knowledge led him to further his studies, learning the ins and outs of the nursery business and arboreal work, a fascination with mycology leading to the building of a mushroom facility on the farm, and taking his agricultural degree to the next level by growing a large and bountiful garden to feed his community.
             </p>
 
-            <p className="text-lg bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-950/30 text-stone-200 leading-relaxed">
+            <p className="content-box text-lg">
                Tyson runs{' '}
                <a
                  href="https://www.shieldsriverfarm.com/"
@@ -58,7 +58,7 @@ export const AboutPage = () => (
         </div>
 
         {/* Email Footer */}
-        <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+        <div className="footer-box">
           <EmailFooter message="Questions? Get in touch:" />
         </div>
       </div>

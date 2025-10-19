@@ -93,10 +93,10 @@ export const GalleryPage = ({ lightboxOpen, setLightboxOpen }: GalleryPageProps)
   }, [lightboxOpen, isNavigating]);
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="page-container">
       {/* Background */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="bg-image-overlay"
         style={{
           backgroundImage: 'url(/trees.jpg)',
           filter: 'brightness(0.4)',
@@ -104,11 +104,11 @@ export const GalleryPage = ({ lightboxOpen, setLightboxOpen }: GalleryPageProps)
       />
 
       {/* Gradient Overlay */}
-      <div className="fixed inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/50 to-emerald-950/70" />
+      <div className="fixed-gradient-overlay" />
 
-      <div className="relative z-10 pt-40 px-4 pb-12">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 text-emerald-700 drop-shadow-lg">Gallery</h1>
+      <div className="page-content">
+        <div className="content-wrapper-lg">
+          <h1 className="page-title mb-3">Gallery</h1>
 
         {/* Masonry Grid - Safari optimized */}
         <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4">
@@ -163,7 +163,7 @@ export const GalleryPage = ({ lightboxOpen, setLightboxOpen }: GalleryPageProps)
         {/* Lightbox Modal */}
         {lightboxOpen && (
           <div
-            className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-0 md:p-4"
+            className="lightbox-overlay"
             onClick={() => setLightboxOpen(false)}
           >
             {/* Close Button */}
@@ -172,7 +172,7 @@ export const GalleryPage = ({ lightboxOpen, setLightboxOpen }: GalleryPageProps)
                 e.stopPropagation();
                 setLightboxOpen(false);
               }}
-              className="absolute top-4 right-4 md:top-6 md:right-6 text-white hover:text-emerald-700 active:text-emerald-700 z-[10000] bg-stone-900/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-stone-700/50 cursor-pointer"
+              className="lightbox-close-btn"
               role="button"
               aria-label="Close lightbox"
               tabIndex={0}
@@ -186,7 +186,7 @@ export const GalleryPage = ({ lightboxOpen, setLightboxOpen }: GalleryPageProps)
                 e.stopPropagation();
                 prevImage();
               }}
-              className="hidden md:block absolute left-4 text-white hover:text-emerald-700 z-[70] bg-stone-900/50 hover:bg-stone-800/50 rounded-full p-3"
+              className="lightbox-nav-btn hidden md:block left-4"
               aria-label="Previous image"
             >
               <ChevronDown size={40} className="rotate-90" />
@@ -198,7 +198,7 @@ export const GalleryPage = ({ lightboxOpen, setLightboxOpen }: GalleryPageProps)
                 e.stopPropagation();
                 nextImage();
               }}
-              className="hidden md:block absolute right-4 text-white hover:text-emerald-700 z-[70] bg-stone-900/50 hover:bg-stone-800/50 rounded-full p-3"
+              className="lightbox-nav-btn hidden md:block right-4"
               aria-label="Next image"
             >
               <ChevronDown size={40} className="-rotate-90" />
@@ -238,8 +238,8 @@ export const GalleryPage = ({ lightboxOpen, setLightboxOpen }: GalleryPageProps)
             </div>
 
             {/* Image Counter */}
-            <div className="absolute bottom-4 md:bottom-4 left-1/2 transform -translate-x-1/2 bg-stone-900/90 backdrop-blur-sm px-4 md:px-6 py-2 rounded-full z-[70]">
-              <span className="text-white font-semibold text-sm md:text-base">
+            <div className="lightbox-counter">
+              <span className="lightbox-counter-text">
                 {currentImageIndex + 1} / {GALLERY_IMAGES.length}
               </span>
             </div>
@@ -253,7 +253,7 @@ export const GalleryPage = ({ lightboxOpen, setLightboxOpen }: GalleryPageProps)
         )}
 
         {/* Email Footer */}
-        <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+        <div className="footer-box">
           <EmailFooter message="Inspired? Let's plan your adventure:"/>
         </div>
         </div>
