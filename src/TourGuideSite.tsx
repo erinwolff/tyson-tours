@@ -16,10 +16,9 @@ const GALLERY_IMAGES = [
   '/IMG-20250918-WA0016.jpg',
   '/WhatsApp Image 2025-09-18 at 08.07.44.jpeg',
   '/WhatsApp Image 2025-09-18 at 08.08.56.jpeg',
-   '/IMG-20250918-WA0012.jpg',
+  '/IMG-20250918-WA0012.jpg',
   '/WhatsApp Image 2025-09-18 at 08.08.56(1).jpeg',
-   '/IMG-20250918-WA0023.jpg',
-  '/IMG-20250918-WA0001.jpg',
+  '/IMG-20250918-WA0023.jpg',
   '/IMG-20250918-WA0004.jpg',
   '/IMG-20250918-WA0006.jpg',
   '/IMG-20250918-WA0007.jpg',
@@ -42,6 +41,7 @@ const GALLERY_IMAGES = [
   '/IMG-20250918-WA0020.jpg',
   '/IMG-20250918-WA0025.jpg',
   '/IMG-20250918-WA0030.jpg',
+  '/IMG-20250918-WA0001.jpg',
 ];
 
 // Polaroid rotation angles for variety

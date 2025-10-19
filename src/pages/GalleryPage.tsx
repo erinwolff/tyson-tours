@@ -110,7 +110,7 @@ export const GalleryPage = ({ lightboxOpen, setLightboxOpen }: GalleryPageProps)
         <div className="content-wrapper-lg">
           <h1 className="page-title mb-3">Gallery</h1>
 
-        {/* Masonry Grid - Safari optimized */}
+        {/* Masonry Grid */}
         <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4">
           {GALLERY_IMAGES.map((img, index) => (
             <div

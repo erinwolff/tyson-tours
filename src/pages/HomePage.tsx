@@ -28,10 +28,10 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
   return (
     <div className="min-h-screen relative">
       <div className="pt-32 px-4 relative z-10">
-        {/* Hero Section - Fixed height container */}
+        {/* Hero Section */}
         <div className="min-h-screen flex flex-col items-center justify-start pt-20 md:pt-25">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Main title - always visible, moves up on scroll */}
+            {/* Main title */}
             <h1
               className="hero-title"
               style={{
@@ -42,7 +42,7 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
               TYSON TOURS
             </h1>
 
-            {/* Subtitle - fades in immediately */}
+            {/* Subtitle */}
             <div
               className="mb-6"
               style={{
