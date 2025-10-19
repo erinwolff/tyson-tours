@@ -220,7 +220,7 @@ export default function TourGuideSite() {
       text: 'What a rockin time. Tyson taught us all about the Yellowstone river while we crushed beers with the boys! 10/10 would recommend.',
     },
     {
-      name: 'Creative Team for Helldiver',
+      name: 'Creative Team for Helldivers',
       text: 'We had the best time last night! Ripping doobs while riding bikes around Bozeman was an epic way to spend our vacation. Tyson even put me in the basket on his bike when I was too drunk to pedal home for the night.',
     },
     {
