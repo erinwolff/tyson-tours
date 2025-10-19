@@ -9,7 +9,7 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
   const testimonials = [
     {
       name: 'Meryl Streep',
-      text: 'What a rockin time. Tyson taught us all about the Yellowstone river while we crushed beers with the boys! 10/10 would recommend.',
+      text: 'What a rockin\' time. Tyson taught us all about the Yellowstone River while we crushed beers with the boys! 10/10 would recommend.',
     },
     {
       name: 'Creative Team for Helldivers',
@@ -17,11 +17,11 @@ export const HomePage = ({ scrollY }: HomePageProps) => {
     },
     {
       name: 'George Washington and Thomas Jefferson',
-      text: 'Our custom Tyson Tour was one for the history books! We learned all about the local culture in the Black Feet and Crow communities. It was amazing to see how our past policies and laws written directly affected these peoples. I\'ve recommended these tours to all my colleagues.',
+      text: 'Our custom Tyson Tour was one for the history books! We learned all about the local culture in the Blackfeet and Crow communities. It was amazing to see how our past policies and laws directly affected these peoples. I\'ve recommended these tours to all my colleagues.',
     },
     {
       name: 'Hayao Miyazaki',
-      text: 'Tyson gave our kids the funnest afternoon we\'ve ever had. We learned all about the local ecology down on the farm, even got to participate in his coveted Miyazaki method! We will be back.',
+      text: 'Tyson gave our kids the most fun afternoon we\'ve ever had. We learned all about the local ecology down on the farm, even got to participate in his coveted Miyazaki method! We will be back.',
     },
   ];
 
