@@ -265,14 +265,14 @@ export default function TourGuideSite() {
                   setCurrentPage(item.page);
                   window.scrollTo(0, 0);
                 }}
-                className={`relative font-medium text-lg transition-colors duration-300 group ${
+                className={`relative font-medium text-lg group ${
                   currentPage === item.page
                     ? 'text-emerald-600'
                     : 'text-stone-300 hover:text-emerald-500'
                 }`}
               >
                 {item.label}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-emerald-600 transition-[width] duration-300 ease-out ${
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-emerald-600 ${
                   currentPage === item.page ? 'w-full' : 'w-0 group-hover:w-full'
                 }`}></span>
               </button>
@@ -281,7 +281,7 @@ export default function TourGuideSite() {
 
           {/* Mobile Hamburger Menu Button */}
           <button
-            className="md:hidden text-stone-300 hover:text-emerald-600 transition-colors z-50 relative"
+            className="md:hidden text-stone-300 hover:text-emerald-600 z-50 relative"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -312,7 +312,7 @@ export default function TourGuideSite() {
             </h2>
             <button
               onClick={closeMenu}
-              className="text-stone-200 hover:text-emerald-700 transition-colors"
+              className="text-stone-200 hover:text-emerald-700"
               aria-label="Close menu"
             >
               <X size={24} />
@@ -329,7 +329,7 @@ export default function TourGuideSite() {
                   closeMenu();
                   window.scrollTo(0, 0);
                 }}
-                className={`text-left px-4 py-3 rounded-lg font-medium transition-colors duration-300 ${
+                className={`text-left px-4 py-3 rounded-lg font-medium ${
                   currentPage === item.page
                     ? 'text-emerald-700 bg-emerald-950/20 border border-emerald-950/50'
                     : 'text-stone-200 hover:text-emerald-700 hover:bg-stone-700/50'
@@ -684,7 +684,7 @@ export default function TourGuideSite() {
                   {/* Book Button */}
                   <button
                     onClick={() => openBookingModal(pkg)}
-                    className="w-full bg-gradient-to-tr from-stone-700 via-emerald-900/80 to-stone-700 hover:from-stone-600 hover:via-emerald-800/80 hover:to-stone-600 text-white text-lg font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-emerald-900/50 border border-emerald-950/30 hover:border-emerald-800/50"
+                    className="w-full bg-gradient-to-tr from-stone-700 via-emerald-900/80 to-stone-700 hover:from-stone-600 hover:via-emerald-800/80 hover:to-stone-600 text-white text-lg font-bold py-4 rounded-lg transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-emerald-900/50 border border-emerald-950/30 hover:border-emerald-800/50"
                   >
                     Book This Adventure →
                   </button>
@@ -712,7 +712,7 @@ export default function TourGuideSite() {
                       </div>
                       <button
                         onClick={closeBookingModal}
-                        className="text-stone-400 hover:text-emerald-700 transition-colors"
+                        className="text-stone-400 hover:text-emerald-700"
                         aria-label="Close modal"
                       >
                         <X size={28} />
@@ -775,13 +775,13 @@ export default function TourGuideSite() {
                         <button
                           type="button"
                           onClick={closeBookingModal}
-                          className="flex-1 px-6 py-3 bg-stone-700 hover:bg-stone-600 text-white font-bold rounded transition-colors"
+                          className="flex-1 px-6 py-3 bg-stone-700 hover:bg-stone-600 text-white font-bold rounded"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
-                          className="flex-1 px-6 py-3 bg-gradient-to-r from-emerald-800 to-green-700 hover:from-emerald-800 hover:to-green-600 text-white font-bold rounded transition-all"
+                          className="flex-1 px-6 py-3 bg-gradient-to-r from-emerald-800 to-green-700 hover:from-emerald-800 hover:to-green-600 text-white font-bold rounded"
                         >
                           Submit Booking
                         </button>
@@ -941,7 +941,7 @@ export default function TourGuideSite() {
                   e.stopPropagation();
                   setLightboxOpen(false);
                 }}
-                className="absolute top-4 right-4 md:top-6 md:right-6 text-white hover:text-emerald-700 active:text-emerald-700 transition-colors z-[10000] bg-stone-900/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-stone-700/50 cursor-pointer"
+                className="absolute top-4 right-4 md:top-6 md:right-6 text-white hover:text-emerald-700 active:text-emerald-700 z-[10000] bg-stone-900/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-stone-700/50 cursor-pointer"
                 role="button"
                 aria-label="Close lightbox"
                 tabIndex={0}
@@ -955,7 +955,7 @@ export default function TourGuideSite() {
                   e.stopPropagation();
                   prevImage();
                 }}
-                className="hidden md:block absolute left-4 text-white hover:text-emerald-700 transition-colors z-[70] bg-stone-900/50 hover:bg-stone-800/50 rounded-full p-3"
+                className="hidden md:block absolute left-4 text-white hover:text-emerald-700 z-[70] bg-stone-900/50 hover:bg-stone-800/50 rounded-full p-3"
                 aria-label="Previous image"
               >
                 <ChevronDown size={40} className="rotate-90" />
@@ -967,7 +967,7 @@ export default function TourGuideSite() {
                   e.stopPropagation();
                   nextImage();
                 }}
-                className="hidden md:block absolute right-4 text-white hover:text-emerald-700 transition-colors z-[70] bg-stone-900/50 hover:bg-stone-800/50 rounded-full p-3"
+                className="hidden md:block absolute right-4 text-white hover:text-emerald-700 z-[70] bg-stone-900/50 hover:bg-stone-800/50 rounded-full p-3"
                 aria-label="Next image"
               >
                 <ChevronDown size={40} className="-rotate-90" />
@@ -989,7 +989,7 @@ export default function TourGuideSite() {
                     e.stopPropagation();
                     prevImage();
                   }}
-                  className="bg-stone-900/80 backdrop-blur-sm text-white active:text-emerald-700 rounded-full p-4 active:scale-95 transition-all shadow-lg"
+                  className="bg-stone-900/80 backdrop-blur-sm text-white active:text-emerald-700 rounded-full p-4 active:scale-95 shadow-lg"
                   aria-label="Previous image"
                 >
                   <ChevronDown size={28} className="rotate-90" />
@@ -999,7 +999,7 @@ export default function TourGuideSite() {
                     e.stopPropagation();
                     nextImage();
                   }}
-                  className="bg-stone-900/80 backdrop-blur-sm text-white active:text-emerald-700 rounded-full p-4 active:scale-95 transition-all shadow-lg"
+                  className="bg-stone-900/80 backdrop-blur-sm text-white active:text-emerald-700 rounded-full p-4 active:scale-95 shadow-lg"
                   aria-label="Next image"
                 >
                   <ChevronDown size={28} className="-rotate-90" />
@@ -1095,7 +1095,7 @@ export default function TourGuideSite() {
                     </p>
                     <button
                       onClick={() => setShowSuccess(false)}
-                      className="mt-6 px-6 py-2 bg-emerald-800 hover:bg-emerald-700 text-white font-bold rounded transition-colors"
+                      className="mt-6 px-6 py-2 bg-emerald-800 hover:bg-emerald-700 text-white font-bold rounded"
                     >
                       Awesome!
                     </button>
@@ -1165,7 +1165,7 @@ export default function TourGuideSite() {
               <button
                 type="submit"
                 disabled={!liabilityName || !liabilityAgreed}
-                className="mt-8 w-full bg-gradient-to-r from-emerald-800 to-green-700 hover:from-emerald-800 hover:to-green-600 disabled:from-stone-700 disabled:to-stone-700 disabled:cursor-not-allowed text-white font-bold py-3 rounded transition-all"
+                className="mt-8 w-full bg-gradient-to-r from-emerald-800 to-green-700 hover:from-emerald-800 hover:to-green-600 disabled:from-stone-700 disabled:to-stone-700 disabled:cursor-not-allowed text-white font-bold py-3 rounded"
               >
                 Sign Waiver & Let's Go!
               </button>
