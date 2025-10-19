@@ -42,6 +42,31 @@ const GALLERY_IMAGES = [
 // Polaroid rotation angles for variety
 const POLAROID_ROTATIONS = [-8, 5, -3, 7, 4, -6, 3, -5];
 
+// Email Footer Component
+const EmailFooter = ({ message, className = "" }: { message?: string; className?: string }) => (
+  <div className={`${className}`}>
+    {message && <p className="text-stone-400 text-center mb-4">{message}</p>}
+    <a
+      href="mailto:tysontours.contact@gmail.com"
+      className="flex items-center justify-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
+    >
+      <Mail size={20} />
+      tysontours.contact@gmail.com
+    </a>
+    <p className="text-stone-500 text-xs mt-4 text-center">
+      Made by{' '}
+      <a
+        href="https://github.com/erinwolff"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-stone-400 hover:text-emerald-700 transition-colors"
+      >
+        Erin Wolff
+      </a>
+    </p>
+  </div>
+);
+
 // Scattered Polaroid Gallery component - Grid layout before text
 const PolaroidGallery = ({ scrollY }: { scrollY: number }) => {
   const opacity = Math.max(0, Math.min(1, (scrollY - 100) / 200));
@@ -161,6 +186,12 @@ export default function TourGuideSite() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  // Reusable navigation function
+  const navigateToPage = (page: string) => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
+
   const packages = [
     {
       title: 'Keiki Express',
@@ -235,8 +266,6 @@ export default function TourGuideSite() {
     },
   ];
 
-  const galleryImages = GALLERY_IMAGES;
-
   const navItems = [
     { label: 'Home', page: 'home' },
     { label: 'About', page: 'about' },
@@ -251,10 +280,7 @@ export default function TourGuideSite() {
       <nav className={`bg-gradient-to-b from-stone-900 to-transparent py-6 px-4 md:px-6 absolute top-0 left-0 right-0 z-40 ${lightboxOpen ? 'hidden' : ''}`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-700 cursor-pointer"
-              onClick={() => {
-                setCurrentPage('home');
-                window.scrollTo(0, 0);
-              }}>
+              onClick={() => navigateToPage('home')}>
             Tyson Tours
           </h1>
 
@@ -263,10 +289,7 @@ export default function TourGuideSite() {
             {navItems.map((item) => (
               <button
                 key={item.page}
-                onClick={() => {
-                  setCurrentPage(item.page);
-                  window.scrollTo(0, 0);
-                }}
+                onClick={() => navigateToPage(item.page)}
                 className={`relative font-medium text-lg group ${
                   currentPage === item.page
                     ? 'text-emerald-600'
@@ -327,9 +350,8 @@ export default function TourGuideSite() {
               <button
                 key={item.page}
                 onClick={() => {
-                  setCurrentPage(item.page);
+                  navigateToPage(item.page);
                   closeMenu();
-                  window.scrollTo(0, 0);
                 }}
                 className={`text-left px-4 py-3 rounded-lg font-medium ${
                   currentPage === item.page
@@ -460,28 +482,8 @@ export default function TourGuideSite() {
       </div>
 
       {/* Email Footer */}
-      <div className="border-t border-emerald-950/30 py-12 px-4 bg-stone-900">
-        <div className="max-w-6xl mx-auto flex flex-col items-center gap-4">
-          <p className="text-stone-400">Questions? Get in touch:</p>
-          <a
-            href="mailto:tysontours.contact@gmail.com"
-            className="flex items-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
-          >
-            <Mail size={20} />
-            tysontours.contact@gmail.com
-          </a>
-          <p className="text-stone-500 text-xs mt-4">
-            Made by{' '}
-            <a
-              href="https://github.com/erinwolff"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-stone-400 hover:text-emerald-700 transition-colors"
-            >
-              Erin Wolff
-            </a>
-          </p>
-        </div>
+      <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+        <EmailFooter message="Questions? Get in touch:" />
       </div>
     </div>
   );
@@ -545,26 +547,8 @@ export default function TourGuideSite() {
           </div>
 
           {/* Email Footer */}
-          <div className="mt-16 border-t border-emerald-950/30 pt-8 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
-            <p className="text-stone-400 text-center mb-4">Questions? Get in touch:</p>
-            <a
-              href="mailto:tysontours.contact@gmail.com"
-              className="flex items-center justify-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
-            >
-              <Mail size={20} />
-              tysontours.contact@gmail.com
-            </a>
-            <p className="text-stone-500 text-xs mt-4 text-center">
-              Made by{' '}
-              <a
-                href="https://github.com/erinwolff"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-stone-400 hover:text-emerald-700 transition-colors"
-              >
-                Erin Wolff
-              </a>
-            </p>
+          <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+            <EmailFooter message="Questions? Get in touch:" />
           </div>
         </div>
       </div>
@@ -810,26 +794,8 @@ export default function TourGuideSite() {
           )}
 
           {/* Email Footer */}
-          <div className="mt-16 border-t border-emerald-950/30 pt-8 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
-            <p className="text-stone-200 text-center mb-4">Ready to explore? Contact us:</p>
-            <a
-              href="mailto:tysontours.contact@gmail.com"
-              className="flex items-center justify-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
-            >
-              <Mail size={20} />
-              tysontours.contact@gmail.com
-            </a>
-            <p className="text-stone-500 text-xs mt-4 text-center">
-              Made by{' '}
-              <a
-                href="https://github.com/erinwolff"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-stone-400 hover:text-emerald-700 transition-colors"
-              >
-                Erin Wolff
-              </a>
-            </p>
+          <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+            <EmailFooter message="Ready to explore? Contact us:" className="text-stone-200" />
           </div>
           </div>
         </div>
@@ -847,14 +813,14 @@ export default function TourGuideSite() {
     const nextImage = () => {
       if (isNavigating) return;
       setIsNavigating(true);
-      setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+      setCurrentImageIndex((prev) => (prev + 1) % GALLERY_IMAGES.length);
       setTimeout(() => setIsNavigating(false), 200);
     };
 
     const prevImage = () => {
       if (isNavigating) return;
       setIsNavigating(true);
-      setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+      setCurrentImageIndex((prev) => (prev - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length);
       setTimeout(() => setIsNavigating(false), 200);
     };
 
@@ -868,13 +834,13 @@ export default function TourGuideSite() {
         } else if (e.key === 'ArrowLeft') {
           if (!isNavigating) {
             setIsNavigating(true);
-            setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+            setCurrentImageIndex((prev) => (prev - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length);
             setTimeout(() => setIsNavigating(false), 200);
           }
         } else if (e.key === 'ArrowRight') {
           if (!isNavigating) {
             setIsNavigating(true);
-            setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+            setCurrentImageIndex((prev) => (prev + 1) % GALLERY_IMAGES.length);
             setTimeout(() => setIsNavigating(false), 200);
           }
         }
@@ -882,7 +848,7 @@ export default function TourGuideSite() {
 
       window.addEventListener('keydown', handleKeyDown);
       return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [lightboxOpen, isNavigating, galleryImages.length]);
+    }, [lightboxOpen, isNavigating, GALLERY_IMAGES.length]);
 
     return (
       <div className="min-h-screen relative overflow-hidden">
@@ -904,7 +870,7 @@ export default function TourGuideSite() {
 
           {/* Masonry Grid - Safari optimized */}
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4">
-            {galleryImages.map((img, index) => (
+            {GALLERY_IMAGES.map((img, index) => (
               <div
                 key={index}
                 className="inline-block w-full mb-3 md:mb-4 group cursor-pointer"
@@ -995,7 +961,7 @@ export default function TourGuideSite() {
               {/* Image Container */}
               <div className="max-w-5xl max-h-[90vh] w-full flex items-center justify-center touch-pan-x" onClick={(e) => e.stopPropagation()}>
                 <img
-                  src={galleryImages[currentImageIndex]}
+                  src={GALLERY_IMAGES[currentImageIndex]}
                   alt={`Gallery image ${currentImageIndex + 1}`}
                   className="max-w-full max-h-[90vh] object-contain md:rounded-lg shadow-2xl"
                 />
@@ -1028,7 +994,7 @@ export default function TourGuideSite() {
               {/* Image Counter */}
               <div className="absolute bottom-4 md:bottom-4 left-1/2 transform -translate-x-1/2 bg-stone-900/90 backdrop-blur-sm px-4 md:px-6 py-2 rounded-full z-[70]">
                 <span className="text-white font-semibold text-sm md:text-base">
-                  {currentImageIndex + 1} / {galleryImages.length}
+                  {currentImageIndex + 1} / {GALLERY_IMAGES.length}
                 </span>
               </div>
 
@@ -1041,26 +1007,8 @@ export default function TourGuideSite() {
           )}
 
           {/* Email Footer */}
-          <div className="mt-16 border-t border-emerald-950/30 pt-8 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
-            <p className="text-stone-200 text-center mb-4">Inspired? Let's plan your adventure:</p>
-            <a
-              href="mailto:tysontours.contact@gmail.com"
-              className="flex items-center justify-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
-            >
-              <Mail size={20} />
-              tysontours.contact@gmail.com
-            </a>
-            <p className="text-stone-500 text-xs mt-4 text-center">
-              Made by{' '}
-              <a
-                href="https://github.com/erinwolff"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-stone-400 hover:text-emerald-700 transition-colors"
-              >
-                Erin Wolff
-              </a>
-            </p>
+          <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+            <EmailFooter message="Inspired? Let's plan your adventure:" className="text-stone-200" />
           </div>
           </div>
         </div>
@@ -1211,26 +1159,8 @@ export default function TourGuideSite() {
           </div>
 
           {/* Email Footer */}
-          <div className="mt-16 border-t border-emerald-950/30 pt-8">
-            <p className="text-stone-400 text-center mb-4">Questions about the waiver? Hit us up:</p>
-            <a
-              href="mailto:tysontours.contact@gmail.com"
-              className="flex items-center justify-center gap-2 text-emerald-700 hover:text-emerald-600 font-semibold"
-            >
-              <Mail size={20} />
-              tysontours.contact@gmail.com
-            </a>
-            <p className="text-stone-500 text-xs mt-4 text-center">
-              Made by{' '}
-              <a
-                href="https://github.com/erinwolff"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-stone-400 hover:text-emerald-700 transition-colors"
-              >
-                Erin Wolff
-              </a>
-            </p>
+          <div className="mt-16 bg-stone-900/60 backdrop-blur-sm p-6 rounded-lg">
+            <EmailFooter message="Questions about the waiver? Hit us up:" />
           </div>
         </div>
       </div>
