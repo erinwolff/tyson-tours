@@ -159,18 +159,22 @@ export default function TourGuideSite() {
 
   const closeMenu = () => setMenuOpen(false);
 
-  // Reusable navigation function with improved reliability
+  // Reusable navigation function with improved reliability and delay
   const navigateToPage = (page: string) => {
     // Only navigate if it's a different page to avoid unnecessary re-renders
     if (currentPage !== page) {
-      setCurrentPage(page);
-      // Use requestAnimationFrame to ensure the scroll happens after the state update
-      requestAnimationFrame(() => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'auto' // Use 'auto' for immediate scrolling
+      // Add a small timeout to ensure the click is fully processed
+      setTimeout(() => {
+        setCurrentPage(page);
+        
+        // Use requestAnimationFrame to ensure the scroll happens after the state update
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'auto' // Use 'auto' for immediate scrolling
+          });
         });
-      });
+      }, 100); // Keep the delay at 100ms for reliability
     }
   };
 
@@ -268,9 +272,22 @@ export default function TourGuideSite() {
                 onClick={(e) => {
                   e.preventDefault(); // Prevent any default behaviors
                   e.stopPropagation(); // Stop event propagation
+                  
+                  // Disable the button temporarily to prevent double-clicks
+                  const button = e.currentTarget;
+                  button.disabled = true;
+                  
                   navigateToPage(item.page);
+                  
                   // Close menu after a small delay to ensure navigation happens first
-                  setTimeout(() => closeMenu(), 50);
+                  setTimeout(() => {
+                    closeMenu();
+                    
+                    // Re-enable the button after navigation
+                    setTimeout(() => {
+                      button.disabled = false;
+                    }, 200);
+                  }, 100);
                 }}
                 className={`mobile-menu-item ${
                   currentPage === item.page
