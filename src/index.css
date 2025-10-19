@@ -51,48 +51,98 @@ h2, h3, h4, h5, h6 {
   animation: scale-in 0.3s ease-out;
 }
 
-@keyframes polaroid-float {
-  0%, 100% {
-    transform: translateY(0) rotate(var(--rotation));
-  }
-  50% {
-    transform: translateY(-10px) rotate(var(--rotation));
-  }
-}
-
+/* Safari-compatible polaroid animations */
 @keyframes polaroid-appear {
   from {
     opacity: 0;
-    transform: translateY(30px) rotate(0deg) scale(0.8);
+    transform: translateY(30px) scale(0.8);
   }
   to {
     opacity: 1;
-    transform: translateY(0) rotate(var(--rotation)) scale(1);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes polaroid-float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotation, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--rotation, 0deg));
   }
 }
 
 .polaroid-photo {
-  animation: polaroid-appear 0.6s ease-out forwards, polaroid-float 4s ease-in-out infinite;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: polaroid-appear 0.6s ease-out forwards;
   cursor: pointer;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
   --rotation: 0deg;
 }
 
-.polaroid-photo:hover {
-  transform: translateY(-5px) rotate(0deg) scale(1.05) !important;
-  z-index: 10;
+/* Apply floating animation with rotation to inner div */
+.polaroid-inner {
+  animation: polaroid-float 4s ease-in-out infinite;
+  animation-delay: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.polaroid-photo:hover > div {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+/* Desktop hover effect - simplified for Safari compatibility */
+@media (min-width: 769px) {
+  .polaroid-photo:hover .polaroid-inner {
+    transform: translateY(-5px) rotate(0deg) scale(1.05) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    animation-play-state: paused;
+  }
 }
 
+/* Mobile - no hover effects or floating */
 @media (max-width: 768px) {
-  .polaroid-photo {
-    animation: polaroid-appear 0.6s ease-out forwards;
+  .polaroid-inner {
+    animation: none;
+    transform: rotate(var(--rotation, 0deg));
   }
 
-  .polaroid-photo:hover {
-    transform: translateY(0) rotate(var(--rotation)) scale(1) !important;
+  .polaroid-photo:active .polaroid-inner {
+    transform: rotate(var(--rotation, 0deg)) scale(0.98);
+  }
+}
+
+/* Safari-optimized gallery items */
+.safari-gallery-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+@media (min-width: 769px) {
+  .safari-gallery-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(5, 150, 105, 0.3);
+    border-color: rgba(5, 150, 105, 0.5);
+  }
+}
+
+.safari-gallery-item:active {
+  transform: scale(0.98);
+  border-color: rgba(5, 150, 105, 0.5);
+}
+
+/* Fix for Safari image rendering */
+.safari-gallery-item img {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+@media (min-width: 769px) {
+  .group:hover .safari-gallery-item img {
+    transform: scale(1.05);
   }
 }

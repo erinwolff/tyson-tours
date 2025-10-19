@@ -66,16 +66,17 @@ const PolaroidGallery = ({ scrollY }: { scrollY: number }) => {
               key={`polaroid-mobile-${index}`}
               className="polaroid-photo justify-self-center"
               style={{
-                '--rotation': `${POLAROID_ROTATIONS[index]}deg`,
-                animationDelay: `${index * 0.15}s`
+                animationDelay: `${index * 0.15}s`,
+                '--rotation': `${POLAROID_ROTATIONS[index]}deg`
               } as React.CSSProperties & { '--rotation': string }}
             >
-              <div className="bg-white p-2 shadow-2xl">
+              <div className="bg-white p-2 shadow-2xl polaroid-inner">
                 <img
                   src={img}
                   alt={`Adventure memory ${index + 1}`}
                   className="w-32 h-28 sm:w-36 sm:h-32 object-cover"
-                  loading="eager"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="h-5 sm:h-6" />
               </div>
@@ -90,16 +91,17 @@ const PolaroidGallery = ({ scrollY }: { scrollY: number }) => {
               key={`polaroid-${index}`}
               className="polaroid-photo justify-self-center"
               style={{
-                '--rotation': `${POLAROID_ROTATIONS[index]}deg`,
-                animationDelay: `${index * 0.1}s`
+                animationDelay: `${index * 0.1}s`,
+                '--rotation': `${POLAROID_ROTATIONS[index]}deg`
               } as React.CSSProperties & { '--rotation': string }}
             >
-              <div className="bg-white p-2 xl:p-3 shadow-2xl">
+              <div className="bg-white p-2 xl:p-3 shadow-2xl polaroid-inner">
                 <img
                   src={img}
                   alt={`Adventure memory ${index + 1}`}
                   className="w-32 h-28 xl:w-40 xl:h-34 2xl:w-48 2xl:h-40 object-cover"
-                  loading="eager"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="h-6 xl:h-8 2xl:h-10" />
               </div>
@@ -900,22 +902,33 @@ export default function TourGuideSite() {
           <div className="max-w-7xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-3 text-emerald-700 drop-shadow-lg">Gallery</h1>
 
-          {/* Masonry Grid */}
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
+          {/* Masonry Grid - Safari optimized */}
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4">
             {galleryImages.map((img, index) => (
               <div
                 key={index}
-                className="break-inside-avoid mb-3 md:mb-4 group cursor-pointer active:scale-95 transition-transform"
+                className="inline-block w-full mb-3 md:mb-4 group cursor-pointer"
                 onClick={() => openLightbox(index)}
+                style={{
+                  pageBreakInside: 'avoid',
+                  breakInside: 'avoid',
+                  WebkitColumnBreakInside: 'avoid'
+                } as React.CSSProperties}
               >
-                <div className="relative overflow-hidden rounded-lg md:rounded-xl shadow-lg hover:shadow-2xl hover:shadow-emerald-950/50 transition-all duration-300 border-2 border-transparent active:border-emerald-700/50">
+                <div className="relative overflow-hidden rounded-lg md:rounded-xl shadow-lg border-2 border-transparent safari-gallery-item">
                   <img
                     src={img}
                     alt={`Gallery image ${index + 1}`}
-                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110 group-active:scale-105"
+                    className="w-full h-auto object-cover display-block"
                     loading="lazy"
+                    decoding="async"
+                    style={{
+                      display: 'block',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none'
+                    }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 flex items-end p-3 md:p-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 flex items-end p-3 md:p-4 pointer-events-none">
                     <span className="text-white font-semibold text-xs md:text-sm">Tap to view</span>
                   </div>
                   {/* Mobile tap indicator */}
